@@ -152,10 +152,24 @@ net.ipv4.ip_forward=1
 
 2/ Réglage des régles Iptables.
 
+- Créer une connexion entre les 2 interfaces réseaux via la redirection de traffic :
+
 util01@server:~$ sudo iptables -A FORWARD -o wlp4s0 -i enp2s0 -s 192.168.2.100/24 -m conntrack --ctstate NEW -j ACCEPT
+
+- - Trace les connexions :
+
 util01@server:~$ sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+- Routage d'adresse :
+
 util01@server:~$ sudo iptables -t nat -F POSTROUTING
+
+- Masquage d'adresse ip :
+
 util01@server:~$ sudo iptables -t nat -A POSTROUTING -o wlp4s0 -j MASQUERADE
+
+- Liste les règles Iptables :
+
 util01@server:~$ sudo iptables -L -t nat -v
 
 

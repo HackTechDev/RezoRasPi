@@ -204,7 +204,7 @@ Ouvrir :
 Remplacer tout par :
 # Sur une seule ligne !!!!!
 
-console=serial0,115200 console=tty root=/dev/nfs nfsroot=192.168.1.100:/srv/nfs/rpi4-image,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
+console=serial0,115200 console=tty root=/dev/nfs nfsroot=192.168.2.100:/srv/nfs/rpi4-image,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
 
 
 24/ Vérification de la configuration réseau actuel. 

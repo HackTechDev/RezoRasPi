@@ -290,7 +290,15 @@ loginShell: /bin/bash
 
 # numResponses: 5
 # numEntries: 4
-util01@college-vouziers:~$ 
+
+
+16/
+
+util01@college-vouziers:~$ sudo su
+root@college-vouziers:/home/util01# ls -l /var/lib/ldap/
+total 112
+-rw------- 1 openldap openldap 110592 déc.  29 22:42 data.mdb
+-rw------- 1 openldap openldap   8192 janv.  8 00:34 lock.mdb
 
 
 II/ Configuration de la page de connexion du Raspberry Pi.

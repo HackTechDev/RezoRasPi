@@ -34,26 +34,25 @@ util01@server:~$ sudo cp -a /media/util01/boot/* /srv/nfs/rpi4-image_custom/boot
 
 
 
-15/ Suppression des fichiers de démarrage par défauts.
+6/ Suppression des fichiers de démarrage par défauts.
 
 util01@server:~$ sudo rm /srv/nfs/rpi4-image_custom/boot/start4.elf
 util01@server:~$ sudo rm /srv/nfs/rpi4-image_custom/boot/fixup4.dat
 
 
-16/ Téléchargement des fichiers de démarrage dans leurs dernières versions.
+7/ Téléchargement des fichiers de démarrage dans leurs dernières versions.
 
 util01@server:~$ wget https://github.com/Hexxeh/rpi-firmware/raw/stable/start4.elf 
 util01@server:~$ wget https://github.com/Hexxeh/rpi-firmware/raw/stable/fixup4.dat
 
 
-17/ Copie des nouveaux fichiers de démarrage.
+8/ Copie des nouveaux fichiers de démarrage.
 
 util01@server:~$ sudo cp start4.elf /srv/nfs/rpi4-image_custom/boot/
 util01@server:~$ sudo cp fixup4.dat /srv/nfs/rpi4-image_custom/boot/
 
 
-
-18/ Configuration du serveur NFS.
+9/ Configuration du serveur NFS.
 
 Ouvrir :
 
@@ -64,7 +63,7 @@ ajouter a la fin :
 /srv/nfs/rpi4-image *(rw,sync,no_subtree_check,no_root_squash)
 
 
-19/ Pour un Raspberry 4, création du lien symbolique dont le nom est l'adresse MAC du Raspberry Pi.
+10/ Pour un Raspberry 4, création du lien symbolique dont le nom est l'adresse MAC du Raspberry Pi.
 
 util01@server:~$ cd /srv/tftpboot/
 
@@ -73,12 +72,12 @@ L'adresse MAC est en minuscule, les deux-points sont remplacés par un tiret.
 util01@server:/srv/tftpboot$ sudo ln -s /srv/nfs/rpi4-image_custom/boot/ dc-a6-32-22-ce-87
 
 
-22/ Activation du service SSH au démarrage.
+11/ Activation du service SSH au démarrage.
 
 util01@server:~$ sudo touch /srv/nfs/rpi4-image_custom/boot/ssh
 
 
-23/ Configuration du fichier de démarrage du Raspberry Pi
+12/ Configuration du fichier de démarrage du Raspberry Pi
 
 Elle permet d'indiquer quelle image Raspberry OS à utiliser.
 
@@ -92,6 +91,8 @@ Remplacer tout par :
 console=serial0,115200 console=tty root=/dev/nfs nfsroot=192.168.2.100:/srv/nfs/rpi4-image_custom,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
 
 
-20/ Redémarre le serveur
+13/ Redémarrer le serveur
 
+
+14/ Redémarrer le Raspberry Pi.
 

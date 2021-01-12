@@ -70,7 +70,7 @@ util01@server:~/RASPSERVER$ wget https://downloads.raspberrypi.org/raspios_armhf
 
 util01@server:~/RASPSERVER$ unzip 2020-12-02-raspios-buster-armhf.zip 
 Archive:  2020-12-02-raspios-buster-armhf.zip
- inflating: 2020-12-02-raspios-buster-armhf.img  
+ inflating: 2020-12-02-raspios-buster-armhf.img
 
 
 9/ Création des mappes de périphérique à partir de l’image.

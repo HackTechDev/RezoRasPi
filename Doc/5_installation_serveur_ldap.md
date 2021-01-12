@@ -341,7 +341,7 @@ greeter-hide-users=
 
 Remplacer par : 
 
-greeter-hide-users=false
+greeter-hide-users=true
 
 
 4/ Activation d'un mot de passe pour l'utilisateur 'root' et de l'utilisateur 'pi'.

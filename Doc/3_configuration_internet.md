@@ -6,7 +6,7 @@ Distribution de travail : Ubuntu 20.04 LTS
 
 Interfaces réseau du serveur Ubuntu. 
 
-* enp2s0  
+* enp2s0
 @ip : 192.168.2.100
 Réseau local avec les Raspberry Pi 4
 

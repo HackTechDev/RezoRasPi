@@ -576,8 +576,14 @@ Use raspi-config to set the country before use.
 8/ Redémarrage du client Raspberry Pi.
 
 
-9/ Test de la connexion avec l'utilisateur : sgondouin
+9/ Test de la connexion avec un utilisateur.
+
+Soit : 
+
+```
+Utilisateur : sgondouin
 Mot de passe : mot2passe
+```
 
 ```
 sgondouin@raspberrypi:~ $ pwd

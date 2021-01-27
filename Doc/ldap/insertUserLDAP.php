@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Removed characters with accent
+ */
+
 function removeUnwantedCharacter($str) {
     $unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
                                 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
@@ -11,6 +15,11 @@ function removeUnwantedCharacter($str) {
     return $str;
 }
 
+
+/*
+ * Create a login
+ */
+
 function createLogin($nomComplet) {
     $nomArr = explode(" ", $nomComplet);
     $login = removeUnwantedCharacter(strtolower(substr($nomArr[1], 0, 1)) .  strtolower($nomArr[0]));
@@ -18,12 +27,22 @@ function createLogin($nomComplet) {
     return $login;
 }
 
+
+/*
+ * Create firstname
+ */
+
 function createFirstname($nomComplet) {
     $nomArr = explode(" ", $nomComplet);
     $firstname = removeUnwantedCharacter(strtolower($nomArr[1]));
 
     return $firstname;
 }
+
+
+/*
+ * Create lastname
+ */
 
 function createLastname($nomComplet) {
     $nomArr = explode(" ", $nomComplet);
@@ -33,6 +52,10 @@ function createLastname($nomComplet) {
 }
 
 
+/*
+ * Create encrypted password from clear text
+ */
+
 function createPassword($clearPassword) {
     $output = shell_exec('slappasswd -s ' . $clearPassword. ' -h \{SSHA\}');
 
@@ -40,13 +63,17 @@ function createPassword($clearPassword) {
 }
 
 
-function createUserLDIF($firstname, $lastname, $login, $password, $uid, $domain, $tld) {
+/*
+ * Create a user ldif file
+ */
+
+function createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld) {
 
     $fileTmp = <<< EOF
 dn: cn=$firstname $lastname,dc=$domain,dc=$tld
 cn: $firstname $lastname
 givenName: $firstname
-gidNumber: 500
+gidNumber: $gid
 homeDirectory: /home/users/$login
 sn: $lastname
 objectClass: inetOrgPerson
@@ -65,6 +92,10 @@ EOF;
 }
 
 
+/*
+ * Insert a ldif file in the LDAP
+ */
+
 function insertUserInLDAP($domain, $tld) {
     $output = shell_exec("ldapadd -x -f ldif.tmp -W -D cn=admin,dc=$domain,dc=$tld");
 
@@ -73,6 +104,10 @@ function insertUserInLDAP($domain, $tld) {
     
 }
 
+
+/*
+ * Process the pupils file
+ */
 
 unlink("userldap.log");
 unlink("inldap.log");
@@ -90,6 +125,9 @@ if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
         $login =  createLogin($data[0]);
         $passwordClear = $data[8];
         $password = createPassword($passwordClear);
+
+        // Replace the following values
+        $gid = 500;
         $uid = 1005 + $row;
         $domain = "college-vouziers";
         $tld = "fr";
@@ -97,7 +135,7 @@ if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
         echo $row . ";" . $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";";
         echo $password . ";";
 
-        createUserLDIF($firstname, $lastname, $login, $password, $uid, $domain, $tld);
+        createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld);
         insertUserInLDAP($domain, $tld);
 
         echo "\n";

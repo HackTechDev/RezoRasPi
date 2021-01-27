@@ -21,8 +21,7 @@ function removeUnwantedCharacter($str) {
  */
 
 function createLogin($nomComplet) {
-    $nomArr = explode(" ", $nomComplet);
-    $login = removeUnwantedCharacter(strtolower(substr($nomArr[1], 0, 1)) .  strtolower($nomArr[0]));
+    $login = removeUnwantedCharacter($nomComplet);
   
     return $login;
 }
@@ -122,7 +121,7 @@ if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
 
         $firstname = createFirstname($data[0]);
         $lastname = createLastname($data[0]);
-        $login =  createLogin($data[0]);
+        $login =  createLogin($data[1]);
         $passwordClear = $data[8];
         $password = createPassword($passwordClear);
 

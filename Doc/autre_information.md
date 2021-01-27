@@ -33,6 +33,7 @@ drwxr-xr-x 14 jbraquet  classe 4096 Jan 15 10:52 jbraquet
 drwxr-xr-x 14 sgondouin classe 4096 Jan 15 10:41 sgondouin
 ```
 
+```
 sgondouin@ordinateur:/home/users/jbraquet $ ls
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 sgondouin@ordinateur:/home/users/jbraquet $ 

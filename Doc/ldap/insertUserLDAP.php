@@ -126,8 +126,8 @@ if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
         $password = createPassword($passwordClear);
 
         // Replace the following values
-        $gid = 500;
-        $uid = 1005 + $row;
+        $gid = 500; // Pupils group id
+        $uid = 1100 + $row; // User id 
         $domain = "college-vouziers";
         $tld = "fr";
 

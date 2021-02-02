@@ -101,7 +101,29 @@ Cliquer sur le bouton [Add].
 - Se déloguer et se reloguer.
 
  
+5/ 
+
+Lien : https://unix.stackexchange.com/questions/276474/how-can-i-execute-any-command-as-a-normal-user-without-sudo
+
+pi@ordinateur:~ $ sudo su
+root@ordinateur:/home/pi# visudo 
 
 
+Ajouter : 
+
+ecachier ALL=(root) NOPASSWD: /usr/bin/apt-get
+
+
+Ouvrir : 
+
+.bashrc
+
+Ajouter à la fin :
+
+alias miseajour='sudo apt-get'
+
+Action : 
+
+$ miseajour update
 
 

@@ -245,3 +245,24 @@ total 20
 drwxr-xr-x 13 BOURSCHEIDT eleve  4096 févr.  3 15:32 BOURSCHEIDT
 drwx------  2 root        root  16384 févr.  3 13:05 lost+found
 ```
+
+5/ Reinitialisation du bureau
+
+- Le squelette de bureau est dans le répertoire : 
+/home/pi/RASP_client/template.tar.gz
+
+- Copier le script 'reinitDesktop.sh' le répertoire de squelette de bureau : 
+
+/etc/skel/
+
+
+- Modifier le script .bashrc : 
+
+Ouvrir : 
+
+/etc/skel/.bashrc
+
+Ajouter à la fin : 
+
+~/reinitDesktop.sh
+

@@ -21,3 +21,4 @@ tar xvfe RASP_client.tar.gz
 chown $USER:$GROUP .local -R
 chmod 755 .config/ -R
 
+# Add Internet proxy

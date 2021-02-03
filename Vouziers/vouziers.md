@@ -181,44 +181,54 @@ technovz@technovz-serveur-rasp:~/DOC/RezoRasPi$ sudo exportfs -a
 
 - Sur un Rasp
 
+```
 pi@raspberry:~ $ sudo su
 root@raspberry:/home/pi# 
+```
 
+```
 root@raspberry:~# mkdir -p /home/user
-
+```
 
 - 
 
+```
 pi@raspberry:~ $ showmount -e 192.168.1.100
 Export list for 192.168.1.100:
 /srv/nfs/user       *
 /srv/nfs/rpi4-image *
+```
 
-
+```
 CACHIERE@raspberry:~ $ showmount -e 192.168.1.100
 Export list for 192.168.1.100:
 /srv/nfs/user       *
 /srv/nfs/rpi4-image *
-
+```
 
 - 
 
+```
 root@raspberry:~# mount -t nfs 192.168.1.100:/srv/nfs/user /home/users
 root@raspberry:~# ls -l /home/user/
 total 16
 drwx------ 2 root root 16384 févr.  3 13:05 lost+found
-
+```
 
 
 - 
 
 Ouvrir :
 
+```
 /etc/fstab
+```
 
 Ajouter : 
 
+```
 192.168.1.100:/srv/nfs/user /home/user nfs soft,timeo=5,intr,rsize=8192,wsize=8192  0  0
+```
 
 
 - Rédemarrer le client Raspi
@@ -229,9 +239,9 @@ Ajouter :
 
 - Vérification
 
-
+```
 pi@raspberry:~ $ ls -l /home/users/
 total 20
 drwxr-xr-x 13 BOURSCHEIDT eleve  4096 févr.  3 15:32 BOURSCHEIDT
 drwx------  2 root        root  16384 févr.  3 13:05 lost+found
-
+```

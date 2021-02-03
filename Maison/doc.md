@@ -1,5 +1,5 @@
-Documentation spécifique pour la salle de technologie du collègue de Vouziers
-=============================================================================
+Documentation
+=============
 
 
 1/ Depuis un poste Raspberry Pi, impossible de faire un mise-à-jour du système.

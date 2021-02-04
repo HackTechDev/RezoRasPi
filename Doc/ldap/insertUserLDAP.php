@@ -21,8 +21,7 @@ function removeUnwantedCharacter($str) {
  */
 
 function createLogin($nomComplet) {
-    //$login = strtolower(removeUnwantedCharacter($nomComplet));
-    $login = removeUnwantedCharacter($nomComplet);
+    $login = strtolower(removeUnwantedCharacter($nomComplet));
   
     return $login;
 }

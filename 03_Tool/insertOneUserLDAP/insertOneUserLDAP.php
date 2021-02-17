@@ -32,8 +32,7 @@ function createLogin($nomComplet) {
  */
 
 function createFirstname($nomComplet) {
-    $nomArr = explode(" ", $nomComplet);
-    $firstname = removeUnwantedCharacter(strtolower($nomArr[1]));
+    $firstname = removeUnwantedCharacter(strtolower($nomComplet));
 
     return $firstname;
 }
@@ -116,15 +115,18 @@ function insertUserInLDAP($domain, $tld) {
 
 /*
  * Process one pupils
- * php -f insertOneUserLDAP.php fistname=Kane lastname=Solomon login=skane password=Mot2Passe
+ * php -f insertOneUserLDAP.php firstname=Kane lastname=Solomon login=skane password=Mot2Passe
  */
+
+unlink("userldap.log");
+unlink("inldap.log");
 
 parse_str(implode('&', array_slice($argv, 1)), $_GET);
 
 $firstname = strtolower(createFirstname($_GET['firstname']));
 $lastname = strtolower(createLastname($_GET['lastname']));
 $login =  strtolower(createLogin($_GET['login']));
-$passwordClear = $_GET['password']);
+$passwordClear = $_GET['password'];
 $password = createPassword($passwordClear);
 
 // Replace the following values
@@ -133,10 +135,10 @@ $uid = getLastUID() + 1; // User id
 $domain = "college-vouziers";
 $tld = "fr";
 
-echo $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";" . $password . ";";
+echo $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";" . $password . "\n";
 
-//createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld);
-//insertUserInLDAP($domain, $tld);
+createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld);
+insertUserInLDAP($domain, $tld);
 
 
 ?>

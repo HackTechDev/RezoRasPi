@@ -111,7 +111,7 @@ technovz@technovz-serveur-rasp:~$ sudo blkid
 /dev/sdb1: LABEL="user" UUID="a260f08f-d98b-4d19-8233-1077904fefcb" TYPE="ext4" PARTUUID="806c4245-01"
 
 
-- Sauvegarde du fochier fstab :
+- Sauvegarde du fichier fstab :
 
 technovz@technovz-serveur-rasp:~$ sudo cp /etc/fstab /etc/fstab.save
 

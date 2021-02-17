@@ -36,7 +36,7 @@ ldapadd -x -f user.ldif -W -D cn=admin,dc=college-vouziers,dc=fr
 ```
 
 
-3/ Rechercher un utilisateur.
+3/ Rechercher tous les utilisateurs / Lister tous les utilisateurs.
 
 ```
 ldapsearch -Q -L -Y EXTERNAL -H ldapi:/// -b dc=college-vouziers,dc=fr

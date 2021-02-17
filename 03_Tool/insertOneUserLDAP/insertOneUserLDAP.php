@@ -90,6 +90,16 @@ EOF;
     file_put_contents("ldif.tmp", $fileTmp);
 }
 
+/*
+*
+*/
+
+function getLastUID() {
+    $output = shell_exec("ldapsearch -Q -L -Y EXTERNAL -H ldapi:/// -b dc=college-vouziers,dc=fr | grep 'uidNumber' | sort -k2 -r");
+    $lineLog = explode(PHP_EOL,$output);
+    $uid = explode(" ", $lineLog[0]);
+    return $uid[1];
+}
 
 /*
  * Insert a ldif file in the LDAP
@@ -105,43 +115,28 @@ function insertUserInLDAP($domain, $tld) {
 
 
 /*
- * Process the pupils file
+ * Process one pupils
+ * php -f insertOneUserLDAP.php fistname=Kane lastname=Solomon login=skane password=Mot2Passe
  */
 
-unlink("userldap.log");
-unlink("inldap.log");
+parse_str(implode('&', array_slice($argv, 1)), $_GET);
 
-$row = 0;
-if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
-  while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-    if($row == 0 ) {
-        echo "";
-    } else {
-        $num = count($data);
+$firstname = strtolower(createFirstname($_GET['firstname']));
+$lastname = strtolower(createLastname($_GET['lastname']));
+$login =  strtolower(createLogin($_GET['login']));
+$passwordClear = $_GET['password']);
+$password = createPassword($passwordClear);
 
-        $firstname = createFirstname($data[0]);
-        $lastname = createLastname($data[0]);
-        $login =  createLogin($data[1]);
-        $passwordClear = $data[8];
-        $password = createPassword($passwordClear);
+// Replace the following values
+$gid = 500; // Pupils group id
+$uid = getLastUID() + 1; // User id 
+$domain = "college-vouziers";
+$tld = "fr";
 
-        // Replace the following values
-        $gid = 500; // Pupils group id
-        $uid = 1100 + $row; // User id 
-        $domain = "college-vouziers";
-        $tld = "fr";
+echo $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";" . $password . ";";
 
-        echo $row . ";" . $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";";
-        echo $password . ";";
+//createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld);
+//insertUserInLDAP($domain, $tld);
 
-        createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld);
-        insertUserInLDAP($domain, $tld);
-
-        echo "\n";
-    }
-    $row++;
-  }
-  fclose($handle);
-}
 
 ?>

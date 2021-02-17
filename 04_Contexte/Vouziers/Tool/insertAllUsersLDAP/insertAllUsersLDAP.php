@@ -129,7 +129,7 @@ if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
         $gid = 500; // Pupils group id
         $uid = 1100 + $row; // User id 
         $domain = "technovz-serveur-rasp";
-        $tld = "fr";
+        $tld = "";
 
         echo $row . ";" . $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";";
         echo $password . ";";

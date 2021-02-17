@@ -344,7 +344,7 @@ loginShell: /bin/bash
 ```
 
 
-16/
+16/ Vérification de l'annuaire dans le système de fichier.
 
 ```
 util01@college-vouziers:~$ sudo su

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# /!\ To test /!\
+
 # Get the current user
 USER="$(whoami)"
 GROUP=eleve

@@ -11,12 +11,15 @@ util01@college-vouziers:~$ cat /var/lib/misc/dnsmasq.leases
 
 2/ Déconnexion manuelle de l'interface graphique par ligne de commande.
 
+```
 util01@college-vouziers:~$ ssh sgondouin@192.168.2.75
 pi@192.168.2.75's password:
 sgondouin@ordinateur:~ $ 
+```
 
+```
 sgondouin@ordinateur:~ $ pkill -9 -f lxsession
-
+```
 
 3/ Connexion sur un Raspberry Pi sans mot de passe.
 

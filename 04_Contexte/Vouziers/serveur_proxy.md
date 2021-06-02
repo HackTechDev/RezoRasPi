@@ -1,5 +1,5 @@
-Configuration du Proxy
-======================
+Pour le serveur : Configuration du Proxy
+========================================
 
 1/ Pour Apt.
 

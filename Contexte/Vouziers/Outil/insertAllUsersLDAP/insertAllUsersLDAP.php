@@ -96,7 +96,7 @@ EOF;
  */
 
 function insertUserInLDAP($domain, $tld) {
-    $output = shell_exec("sudo -S ldapadd -x -f ldif.tmp -W -D cn=admin,dc=$domain");
+    $output = shell_exec("ldapadd -x -f ldif.tmp -W -D cn=admin,dc=$domain");
 
     $lineLog = $output;
     file_put_contents("inldap.log", $lineLog, FILE_APPEND | LOCK_EX);
@@ -111,15 +111,8 @@ function insertUserInLDAP($domain, $tld) {
 unlink("userldap.log");
 unlink("inldap.log");
 
-// Cleaner le fichier :
-// Supprimer la 1er ligne qui est l'entête
-// Supprimer les "
-// Remplacer les , par ;
-$filenameIACA = "export_eleve_juin2020.txt";
-
-
 $row = 0;
-if (($handle = fopen($filenameIACA, "r")) !== FALSE) {
+if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
   while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if($row == 0 ) {
         echo "";
@@ -134,12 +127,7 @@ if (($handle = fopen($filenameIACA, "r")) !== FALSE) {
 
         // Replace the following values
         $gid = 500; // Pupils group id
-	    // $gid = 501 // Teacher group id
-
-	    // Get last id : 
-	    // ldapsearch -Q -L -Y EXTERNAL -H ldapi:/// -b dc=technovz-serveur-rasp | grep 'uidNumber' | sort -k2 -r
-
-        $uid = 1200 + $row; // User id 
+        $uid = 1100 + $row; // User id 
         $domain = "technovz-serveur-rasp";
         $tld = "";
 

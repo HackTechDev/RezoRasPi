@@ -32,8 +32,7 @@ function createLogin($nomComplet) {
  */
 
 function createFirstname($nomComplet) {
-    $nomArr = explode(" ", $nomComplet);
-    $firstname = removeUnwantedCharacter(strtolower($nomArr[1]));
+    $firstname = removeUnwantedCharacter(strtolower(trim($nomComplet)));
 
     return $firstname;
 }
@@ -44,8 +43,7 @@ function createFirstname($nomComplet) {
  */
 
 function createLastname($nomComplet) {
-    $nomArr = explode(" ", $nomComplet);
-    $lastname = removeUnwantedCharacter(strtolower($nomArr[0]));
+    $lastname = removeUnwantedCharacter(strtolower(trim($nomComplet)));
 
     return $lastname;
 }
@@ -68,6 +66,8 @@ function createPassword($clearPassword) {
 
 function createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld) {
 
+    // Create the user ldif
+
     $fileTmp = <<< EOF
 dn: cn=$firstname $lastname,dc=$domain,dc=$tld
 cn: $firstname $lastname
@@ -82,12 +82,20 @@ uidNumber: $uid
 uid: $login
 loginShell: /bin/bash
 userPassword: $password
+
 EOF;
 
-    $lineLog = $uid . ";" . $login . "\n";
-    file_put_contents("userldap.log", $lineLog, FILE_APPEND | LOCK_EX);
+     $fileTmp = $fileTmp . "\n";
 
-    file_put_contents("ldif.tmp", $fileTmp);
+    // Log
+
+    //$lineLog = $uid . ";" . $login . "\n";
+    //file_put_contents("userldap.log", $lineLog, FILE_APPEND | LOCK_EX);
+
+
+    // Create the ldif single file
+
+    file_put_contents("user.ldif.tmp", $fileTmp, FILE_APPEND | LOCK_EX);
 }
 
 
@@ -96,7 +104,7 @@ EOF;
  */
 
 function insertUserInLDAP($domain, $tld) {
-    $output = shell_exec("ldapadd -x -f ldif.tmp -W -D cn=admin,dc=$domain,dc=$tld");
+    $output = shell_exec("ldapadd -x -f user_eleve.ldif -W -D cn=admin,dc=$domain,dc=$tld");
 
     $lineLog = $output;
     file_put_contents("inldap.log", $lineLog, FILE_APPEND | LOCK_EX);
@@ -108,18 +116,19 @@ function insertUserInLDAP($domain, $tld) {
  * Process the pupils file
  */
 
-unlink("userldap.log");
-unlink("inldap.log");
+unlink("user_eleve.ldif.tmp");
+//unlink("userldap.log");
+//unlink("inldap.log");
 
 $row = 0;
-if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
+if (($handle = fopen("export_eleve_juin2020.txt", "r")) !== FALSE) {
   while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if($row == 0 ) {
         echo "";
     } else {
         $num = count($data);
 
-        $firstname = createFirstname($data[0]);
+        $firstname = createFirstname($data[2]);
         $lastname = createLastname($data[0]);
         $login =  createLogin($data[1]);
         $passwordClear = $data[8];
@@ -135,13 +144,13 @@ if (($handle = fopen("eleves_iaca.csv", "r")) !== FALSE) {
         echo $password . ";";
 
         createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $domain, $tld);
-        insertUserInLDAP($domain, $tld);
-
+        
         echo "\n";
     }
     $row++;
   }
   fclose($handle);
 }
+
 
 ?>

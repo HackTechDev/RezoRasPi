@@ -1,0 +1,672 @@
+dn: cn=julia haucke julia,dc=college-vouziers,dc=fr
+cn: julia haucke julia
+givenName: julia
+gidNumber: 500
+homeDirectory: /home/users/haucke
+sn: haucke julia
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1101
+uid: haucke
+loginShell: /bin/bash
+userPassword: {SSHA}MDFyOfzwrrCPdnp3oApuJuES3FtAVfEa
+
+dn: cn=dolores crespo dolores,dc=college-vouziers,dc=fr
+cn: dolores crespo dolores
+givenName: dolores
+gidNumber: 500
+homeDirectory: /home/users/crespo
+sn: crespo dolores
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1102
+uid: crespo
+loginShell: /bin/bash
+userPassword: {SSHA}booNX+XbHqd56X2NohIRvx7jIbc9NmwK
+
+dn: cn=aurelie deswaene aurelie,dc=college-vouziers,dc=fr
+cn: aurelie deswaene aurelie
+givenName: aurelie
+gidNumber: 500
+homeDirectory: /home/users/deswaenea
+sn: deswaene aurelie
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1103
+uid: deswaenea
+loginShell: /bin/bash
+userPassword: {SSHA}l1Z56nYG+l4MFLR8uo/zZiAquO/i9gS+
+
+dn: cn=gaetan rollinet gaetan,dc=college-vouziers,dc=fr
+cn: gaetan rollinet gaetan
+givenName: gaetan
+gidNumber: 500
+homeDirectory: /home/users/rollinetg
+sn: rollinet gaetan
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1104
+uid: rollinetg
+loginShell: /bin/bash
+userPassword: {SSHA}3buTKVxtRKoSSeMeaj+ZHoaUUbAt3tNU
+
+dn: cn=laurette lagny laurette,dc=college-vouziers,dc=fr
+cn: laurette lagny laurette
+givenName: laurette
+gidNumber: 500
+homeDirectory: /home/users/lagnyl
+sn: lagny laurette
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1105
+uid: lagnyl
+loginShell: /bin/bash
+userPassword: {SSHA}HiQPK5xRavIz6rcT6uRYEmPgZexV7ZIU
+
+dn: cn=adelaide paquit adelaide,dc=college-vouziers,dc=fr
+cn: adelaide paquit adelaide
+givenName: adelaide
+gidNumber: 500
+homeDirectory: /home/users/paquit
+sn: paquit adelaide
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1106
+uid: paquit
+loginShell: /bin/bash
+userPassword: {SSHA}EcIKU/M+pLMOxDr+UaJEwuzmT+wH91YG
+
+dn: cn=marie ange baguet marie ange,dc=college-vouziers,dc=fr
+cn: marie ange baguet marie ange
+givenName: marie ange
+gidNumber: 500
+homeDirectory: /home/users/baguet
+sn: baguet marie ange
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1107
+uid: baguet
+loginShell: /bin/bash
+userPassword: {SSHA}KKB89Jm/B2kA8fH9elM+k+BpNEbdzbaY
+
+dn: cn=ines avril ines,dc=college-vouziers,dc=fr
+cn: ines avril ines
+givenName: ines
+gidNumber: 500
+homeDirectory: /home/users/avril
+sn: avril ines
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1108
+uid: avril
+loginShell: /bin/bash
+userPassword: {SSHA}uJP5fn4xT25euJHPAboNl5FJDzfW0lns
+
+dn: cn=valerie caitucoli valerie,dc=college-vouziers,dc=fr
+cn: valerie caitucoli valerie
+givenName: valerie
+gidNumber: 500
+homeDirectory: /home/users/caitucoli
+sn: caitucoli valerie
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1109
+uid: caitucoli
+loginShell: /bin/bash
+userPassword: {SSHA}toCxZLKHqbKTZ4keCw1U6QJ32dyTf3wh
+
+dn: cn=christele delaurent christele,dc=college-vouziers,dc=fr
+cn: christele delaurent christele
+givenName: christele
+gidNumber: 500
+homeDirectory: /home/users/delaurentc
+sn: delaurent christele
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1110
+uid: delaurentc
+loginShell: /bin/bash
+userPassword: {SSHA}xEASvUNc2j7meKKAfuoFvQ3xMw6gG2oH
+
+dn: cn=annick gaillot annick,dc=college-vouziers,dc=fr
+cn: annick gaillot annick
+givenName: annick
+gidNumber: 500
+homeDirectory: /home/users/gaillot
+sn: gaillot annick
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1111
+uid: gaillot
+loginShell: /bin/bash
+userPassword: {SSHA}+sHavxveGO9T2n5cX279JTfs/xGQJgbN
+
+dn: cn=franck joly franck,dc=college-vouziers,dc=fr
+cn: franck joly franck
+givenName: franck
+gidNumber: 500
+homeDirectory: /home/users/joly
+sn: joly franck
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1112
+uid: joly
+loginShell: /bin/bash
+userPassword: {SSHA}DhOaCvoNwwOG7PZ3Q46IsJNtchuqkEXr
+
+dn: cn=elodie lambert elodie,dc=college-vouziers,dc=fr
+cn: elodie lambert elodie
+givenName: elodie
+gidNumber: 500
+homeDirectory: /home/users/lamberte
+sn: lambert elodie
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1113
+uid: lamberte
+loginShell: /bin/bash
+userPassword: {SSHA}F+t03n2j6eIomHBmuNv1wbvh4shRvy4P
+
+dn: cn=arthur martinot arthur,dc=college-vouziers,dc=fr
+cn: arthur martinot arthur
+givenName: arthur
+gidNumber: 500
+homeDirectory: /home/users/martinota
+sn: martinot arthur
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1114
+uid: martinota
+loginShell: /bin/bash
+userPassword: {SSHA}78ZbjSTNeFp1BhIDN2hzfTx7P5nMK0EF
+
+dn: cn=patricia octave patricia,dc=college-vouziers,dc=fr
+cn: patricia octave patricia
+givenName: patricia
+gidNumber: 500
+homeDirectory: /home/users/octavep
+sn: octave patricia
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1115
+uid: octavep
+loginShell: /bin/bash
+userPassword: {SSHA}1jA+Qe/WgO8O2bCnu/hjsCV8iisilgeo
+
+dn: cn=chrystelle schlosser chrystelle,dc=college-vouziers,dc=fr
+cn: chrystelle schlosser chrystelle
+givenName: chrystelle
+gidNumber: 500
+homeDirectory: /home/users/schlosser
+sn: schlosser chrystelle
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1116
+uid: schlosser
+loginShell: /bin/bash
+userPassword: {SSHA}UtUJsOK/xvmRInWyurBT4IH8UqbZiIhe
+
+dn: cn=julien verreaux julien,dc=college-vouziers,dc=fr
+cn: julien verreaux julien
+givenName: julien
+gidNumber: 500
+homeDirectory: /home/users/verreaux
+sn: verreaux julien
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1117
+uid: verreaux
+loginShell: /bin/bash
+userPassword: {SSHA}3ajDQUAJ5LenAV+iaKS+ViPU5wvIS9cb
+
+dn: cn=remy mired remy,dc=college-vouziers,dc=fr
+cn: remy mired remy
+givenName: remy
+gidNumber: 500
+homeDirectory: /home/users/mired
+sn: mired remy
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1118
+uid: mired
+loginShell: /bin/bash
+userPassword: {SSHA}gYBtgrAS0xApyAy1RN9mJpwnYn5Ie8YK
+
+dn: cn=alexandre blaineau alexandre,dc=college-vouziers,dc=fr
+cn: alexandre blaineau alexandre
+givenName: alexandre
+gidNumber: 500
+homeDirectory: /home/users/blaineau
+sn: blaineau alexandre
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1119
+uid: blaineau
+loginShell: /bin/bash
+userPassword: {SSHA}fHe1lvjU3mv/VLGPSx1zF0amQaMAPBwY
+
+dn: cn=antony dussart antony,dc=college-vouziers,dc=fr
+cn: antony dussart antony
+givenName: antony
+gidNumber: 500
+homeDirectory: /home/users/dussarta
+sn: dussart antony
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1120
+uid: dussarta
+loginShell: /bin/bash
+userPassword: {SSHA}OUljHaxvDrJuctlcvCiWwfhaWhRijOHc
+
+dn: cn=veronique peltier veronique,dc=college-vouziers,dc=fr
+cn: veronique peltier veronique
+givenName: veronique
+gidNumber: 500
+homeDirectory: /home/users/peltier
+sn: peltier veronique
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1121
+uid: peltier
+loginShell: /bin/bash
+userPassword: {SSHA}4Wld+KcuonrbPogiH8fJClhu/WidCp66
+
+dn: cn=evelyne schmitt evelyne,dc=college-vouziers,dc=fr
+cn: evelyne schmitt evelyne
+givenName: evelyne
+gidNumber: 500
+homeDirectory: /home/users/schmitt
+sn: schmitt evelyne
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1122
+uid: schmitt
+loginShell: /bin/bash
+userPassword: {SSHA}Gmx0wEQyTgHJuMARVGapKcYy5aQYQfUm
+
+dn: cn=ludivine beaudon ludivine,dc=college-vouziers,dc=fr
+cn: ludivine beaudon ludivine
+givenName: ludivine
+gidNumber: 500
+homeDirectory: /home/users/beaudon
+sn: beaudon ludivine
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1123
+uid: beaudon
+loginShell: /bin/bash
+userPassword: {SSHA}xSzv5o369GTILOYiLNipg6BcJxA1Ts4m
+
+dn: cn=carole elsan carole,dc=college-vouziers,dc=fr
+cn: carole elsan carole
+givenName: carole
+gidNumber: 500
+homeDirectory: /home/users/elsan
+sn: elsan carole
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1124
+uid: elsan
+loginShell: /bin/bash
+userPassword: {SSHA}UsyB+tcRVUZq+DCqlLJuNOhwboXQIUPA
+
+dn: cn=sophie-charlott forcioli sophie-charlott,dc=college-vouziers,dc=fr
+cn: sophie-charlott forcioli sophie-charlott
+givenName: sophie-charlott
+gidNumber: 500
+homeDirectory: /home/users/forciolis
+sn: forcioli sophie-charlott
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1125
+uid: forciolis
+loginShell: /bin/bash
+userPassword: {SSHA}KQrMPt8Fn2UzxFBNe4JXPL5J90cr7NeK
+
+dn: cn=helene gentil lechene helene,dc=college-vouziers,dc=fr
+cn: helene gentil lechene helene
+givenName: helene
+gidNumber: 500
+homeDirectory: /home/users/gentilleche
+sn: gentil lechene helene
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1126
+uid: gentilleche
+loginShell: /bin/bash
+userPassword: {SSHA}wmw4Mv4172zmyjXvZh1BKq5weCaA5F/y
+
+dn: cn=isabelle flamand isabelle,dc=college-vouziers,dc=fr
+cn: isabelle flamand isabelle
+givenName: isabelle
+gidNumber: 500
+homeDirectory: /home/users/flamand
+sn: flamand isabelle
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1127
+uid: flamand
+loginShell: /bin/bash
+userPassword: {SSHA}FB7+1ZC/dQkXFkNN6bUqxUgoDBm6YOya
+
+dn: cn=jose hourlier jose,dc=college-vouziers,dc=fr
+cn: jose hourlier jose
+givenName: jose
+gidNumber: 500
+homeDirectory: /home/users/hourlier
+sn: hourlier jose
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1128
+uid: hourlier
+loginShell: /bin/bash
+userPassword: {SSHA}dFICoJUwvRebr1wW7QvPPjP1XmiDgQSd
+
+dn: cn=odette iaconelli odette,dc=college-vouziers,dc=fr
+cn: odette iaconelli odette
+givenName: odette
+gidNumber: 500
+homeDirectory: /home/users/iaconelli
+sn: iaconelli odette
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1129
+uid: iaconelli
+loginShell: /bin/bash
+userPassword: {SSHA}Tfv4EY/H9rgYNzegbUxBmlBbHYSfCEHf
+
+dn: cn=edith thomas edith,dc=college-vouziers,dc=fr
+cn: edith thomas edith
+givenName: edith
+gidNumber: 500
+homeDirectory: /home/users/thomas1
+sn: thomas edith
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1130
+uid: thomas1
+loginShell: /bin/bash
+userPassword: {SSHA}lUs25PIsgCS2/ghGNprRtoMqZXsIUmrd
+
+dn: cn=aurore lallement aurore,dc=college-vouziers,dc=fr
+cn: aurore lallement aurore
+givenName: aurore
+gidNumber: 500
+homeDirectory: /home/users/lallement
+sn: lallement aurore
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1131
+uid: lallement
+loginShell: /bin/bash
+userPassword: {SSHA}8q73r0l90AXInpvwb5UJv8ztJUUPQ1rC
+
+dn: cn=olivier samann olivier,dc=college-vouziers,dc=fr
+cn: olivier samann olivier
+givenName: olivier
+gidNumber: 500
+homeDirectory: /home/users/samann
+sn: samann olivier
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1132
+uid: samann
+loginShell: /bin/bash
+userPassword: {SSHA}aOezs87Xy1WWhOdrtl+mtsMIbBblSUu8
+
+dn: cn=mikael cougneau mikael,dc=college-vouziers,dc=fr
+cn: mikael cougneau mikael
+givenName: mikael
+gidNumber: 500
+homeDirectory: /home/users/cougneau
+sn: cougneau mikael
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1133
+uid: cougneau
+loginShell: /bin/bash
+userPassword: {SSHA}PfwTYTSl2Px9f5SIvOMOToHNIu+UyJTO
+
+dn: cn=emeline lebas emeline,dc=college-vouziers,dc=fr
+cn: emeline lebas emeline
+givenName: emeline
+gidNumber: 500
+homeDirectory: /home/users/lebase
+sn: lebas emeline
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1134
+uid: lebase
+loginShell: /bin/bash
+userPassword: {SSHA}YsZDarngnI8nXXGeksACklxl3fu8L36u
+
+dn: cn=raoul beaucher raoul,dc=college-vouziers,dc=fr
+cn: raoul beaucher raoul
+givenName: raoul
+gidNumber: 500
+homeDirectory: /home/users/beaucher
+sn: beaucher raoul
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1135
+uid: beaucher
+loginShell: /bin/bash
+userPassword: {SSHA}XdF9+LSpeQ7A3YuHHb6WDsWYZNe1GRZv
+
+dn: cn=beatrice bardiaux beatrice,dc=college-vouziers,dc=fr
+cn: beatrice bardiaux beatrice
+givenName: beatrice
+gidNumber: 500
+homeDirectory: /home/users/bardiaux
+sn: bardiaux beatrice
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1136
+uid: bardiaux
+loginShell: /bin/bash
+userPassword: {SSHA}AiA2fgYIBt449k+ksA8hPd89lawYVUVx
+
+dn: cn=jacques braquet jacques,dc=college-vouziers,dc=fr
+cn: jacques braquet jacques
+givenName: jacques
+gidNumber: 500
+homeDirectory: /home/users/braquet
+sn: braquet jacques
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1137
+uid: braquet
+loginShell: /bin/bash
+userPassword: {SSHA}nmc3uBxg/Pv0K1YGOudlSBW259pX7p1P
+
+dn: cn=mikael thome mikael,dc=college-vouziers,dc=fr
+cn: mikael thome mikael
+givenName: mikael
+gidNumber: 500
+homeDirectory: /home/users/thomem
+sn: thome mikael
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1138
+uid: thomem
+loginShell: /bin/bash
+userPassword: {SSHA}M3qTieKQo2M5o3BqWPFX/tsbF5cR2/LK
+
+dn: cn=heloise anginot heloise,dc=college-vouziers,dc=fr
+cn: heloise anginot heloise
+givenName: heloise
+gidNumber: 500
+homeDirectory: /home/users/anginot
+sn: anginot heloise
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1139
+uid: anginot
+loginShell: /bin/bash
+userPassword: {SSHA}udP1IaTqxxiDE0i9WGAe6Kk7CMTXiRMU
+
+dn: cn=laurent billard laurent,dc=college-vouziers,dc=fr
+cn: laurent billard laurent
+givenName: laurent
+gidNumber: 500
+homeDirectory: /home/users/billardl
+sn: billard laurent
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1140
+uid: billardl
+loginShell: /bin/bash
+userPassword: {SSHA}dLK4BIph2TvdJuZ0LfY1oXqj8JXcIpJG
+
+dn: cn=michael boualit michael,dc=college-vouziers,dc=fr
+cn: michael boualit michael
+givenName: michael
+gidNumber: 500
+homeDirectory: /home/users/boualitm
+sn: boualit michael
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1141
+uid: boualitm
+loginShell: /bin/bash
+userPassword: {SSHA}6OnuA9GyxybvV5eAagTjROlvhi6SLp4F
+
+dn: cn=elise couval elise,dc=college-vouziers,dc=fr
+cn: elise couval elise
+givenName: elise
+gidNumber: 500
+homeDirectory: /home/users/couval
+sn: couval elise
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1142
+uid: couval
+loginShell: /bin/bash
+userPassword: {SSHA}GML6Of14/CmgJZ4mCXC1xMdAkXBZkyMI
+
+dn: cn=aurelie glavier aurelie,dc=college-vouziers,dc=fr
+cn: aurelie glavier aurelie
+givenName: aurelie
+gidNumber: 500
+homeDirectory: /home/users/glavier
+sn: glavier aurelie
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1143
+uid: glavier
+loginShell: /bin/bash
+userPassword: {SSHA}+Ff62aCBlGGApMvWHr1Z9mAkFNKT/TwB
+
+dn: cn=nicolas guillemin nicolas,dc=college-vouziers,dc=fr
+cn: nicolas guillemin nicolas
+givenName: nicolas
+gidNumber: 500
+homeDirectory: /home/users/guillemin
+sn: guillemin nicolas
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1144
+uid: guillemin
+loginShell: /bin/bash
+userPassword: {SSHA}YL+k8/tQulDTllZQNOealPBDfZh9T//R
+
+dn: cn=wilfried kocher wilfried,dc=college-vouziers,dc=fr
+cn: wilfried kocher wilfried
+givenName: wilfried
+gidNumber: 500
+homeDirectory: /home/users/kocherw
+sn: kocher wilfried
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1145
+uid: kocherw
+loginShell: /bin/bash
+userPassword: {SSHA}w17MwKsOSrzTRCdvIfSipwRdS9lhy1p/
+
+dn: cn=peggy lemut peggy,dc=college-vouziers,dc=fr
+cn: peggy lemut peggy
+givenName: peggy
+gidNumber: 500
+homeDirectory: /home/users/lemut
+sn: lemut peggy
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1146
+uid: lemut
+loginShell: /bin/bash
+userPassword: {SSHA}jJXERXpbWfDIh0RpERNkOsiLf4p0Z/k2
+
+dn: cn=quentin moreaux quentin,dc=college-vouziers,dc=fr
+cn: quentin moreaux quentin
+givenName: quentin
+gidNumber: 500
+homeDirectory: /home/users/moreaux
+sn: moreaux quentin
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1147
+uid: moreaux
+loginShell: /bin/bash
+userPassword: {SSHA}l8IXJlLL7t7zi02OeItiljIB9QRGi2Dd
+
+dn: cn=chloe sembeni chloe,dc=college-vouziers,dc=fr
+cn: chloe sembeni chloe
+givenName: chloe
+gidNumber: 500
+homeDirectory: /home/users/remy
+sn: sembeni chloe
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uidNumber: 1148
+uid: remy
+loginShell: /bin/bash
+userPassword: {SSHA}VW8HXv9OdKeL9/1tJv5oxijtCe/Jie1A
+

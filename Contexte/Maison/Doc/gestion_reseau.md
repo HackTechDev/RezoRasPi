@@ -1,7 +1,7 @@
-Gestion Réseau
-==============
+#### Gestion Réseau
 
-1/ Listage des Raspberry Pi en réseau.
+
+### 1/ Listage des Raspberry Pi en réseau.
 
 ```
 util01@college-vouziers:~$ cat /var/lib/misc/dnsmasq.leases
@@ -9,7 +9,7 @@ util01@college-vouziers:~$ cat /var/lib/misc/dnsmasq.leases
 ```
 
 
-2/ Déconnexion manuelle de l'interface graphique par ligne de commande.
+### 2/ Déconnexion manuelle de l'interface graphique par ligne de commande.
 
 ```
 util01@college-vouziers:~$ ssh sgondouin@192.168.2.75
@@ -21,7 +21,8 @@ sgondouin@ordinateur:~ $
 sgondouin@ordinateur:~ $ pkill -9 -f lxsession
 ```
 
-3/ Connexion sur un Raspberry Pi sans mot de passe.
+
+### 3/ Connexion sur un Raspberry Pi sans mot de passe.
 
 - Sur le serveur, génération de la clé publique : 
 

@@ -1,5 +1,5 @@
-Création d'autres images
-========================
+#### Création d'image personalisé
+
 
 Lien :
 https://medium.com/platformer-blog/creating-a-custom-raspbian-os-image-for-production-3fcb43ff3630
@@ -10,18 +10,18 @@ Ensuite, il faudra créer des liens symboliques correspondant aux Raspberry Pi q
 Il ne faudra pas oublier d'indiquer la configuration de boot en suivant le point 23/.
 
 
-1/ Depuis un Raspberry Pi, customiser la distribution Raspberry Pi OS.
+### 1/ Depuis un Raspberry Pi, customiser la distribution Raspberry Pi OS.
 Ajouter et/ou supprimer les logiciels.
 
 
-2/ Enlever la carte micro-sd
+### 2/ Enlever la carte micro-sd
 
 
-3/ Insérer la carte micro-sd dans l'ordinateur faisant office de serveur.
+### 3/ Insérer la carte micro-sd dans l'ordinateur faisant office de serveur.
 Ne pas effectuer le montage de la carte.
 
 
-4/ Création du répertoire de travail.
+### 4/ Création du répertoire de travail.
 
 ```
 util01@station66:~$ mkdir -p RASPI_Custom
@@ -29,7 +29,7 @@ util01@station66:~$ cd RASPI_Custom/
 util01@station66:~/RASPI_Custom$ 
 ```
 
-5/ Détecter les différentes partitions de la carte SD.
+### 5/ Détecter les différentes partitions de la carte SD.
 
 ```
 util01@station01:~/RASPI_Custom$ sudo fdisk -l
@@ -47,7 +47,7 @@ Périphérique   Amorçage  Début      Fin Secteurs Taille Id Type
 ```
 
 
-6/ Clonage de la carte SD.
+### 6/ Clonage de la carte SD.
 
 ```
 util01@station01:~/RASPI_Custom$ sudo dd if=/dev/mmcblk0 of=raspi_clone.img
@@ -63,7 +63,7 @@ util01@station01:~/RASPI_Custom$ ls -lh raspi_clone.img
 ```
 
 
-7/ Réduction de la taille de l'image.
+### 7/ Réduction de la taille de l'image.
 
 Lien : 
 https://github.com/Drewsif/PiShrink
@@ -150,7 +150,7 @@ util01@college-vouziers:~/RASPI_Custom$ gzip -d raspi_clone-shrink.img.gz
 ```
 
 
-8/ Création des mappes de périphérique à partir de l’image.
+### 8/ Création des mappes de périphérique à partir de l’image.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo kpartx -a -v raspi_clone-shrink.img
@@ -159,7 +159,7 @@ add map loop9p2 (253:1): 0 12073385 linear 7:9 532480
 ```
 
 
-9/ Création des répertoires de montage.
+### 9/ Création des répertoires de montage.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ mkdir rootmnt
@@ -167,7 +167,7 @@ util01@college-vouziers:~/RASPI_Custom$ mkdir bootmnt
 ```
 
 
-10/ Montage les devices vers les répertoires de montage.
+### 10/ Montage les devices vers les répertoires de montage.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo mount /dev/mapper/loop9p1 bootmnt/
@@ -175,14 +175,14 @@ util01@college-vouziers:~/RASPI_Custom$ sudo mount /dev/mapper/loop9p2 rootmnt/
 ```
 
 
-11/ Création du répertoire de l'image custom de Raspberry Pi OS.
+### 11/ Création du répertoire de l'image custom de Raspberry Pi OS.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo mkdir -p /srv/nfs/rpi4-image_custom
 ```
 
 
-12/ Copie des fichiers de l’image vers le répertoire réseau spécifique à un Raspberry Pi. 
+### 12/ Copie des fichiers de l’image vers le répertoire réseau spécifique à un Raspberry Pi. 
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo cp -a rootmnt/* /srv/nfs/rpi4-image_custom/
@@ -190,7 +190,7 @@ util01@college-vouziers:~/RASPI_Custom$ sudo cp -a bootmnt/* /srv/nfs/rpi4-image
 ```
 
 
-13/ Suppression des fichiers de démarrage par défauts.
+### 13/ Suppression des fichiers de démarrage par défauts.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo rm /srv/nfs/rpi4-image_custom/boot/start4.elf
@@ -198,7 +198,7 @@ util01@college-vouziers:~/RASPI_Custom$ sudo rm /srv/nfs/rpi4-image_custom/boot/
 ```
 
 
-14/ Téléchargement des fichiers de démarrage dans leurs dernières versions.
+### 14/ Téléchargement des fichiers de démarrage dans leurs dernières versions.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ wget https://github.com/Hexxeh/rpi-firmware/raw/stable/start4.elf 
@@ -206,7 +206,7 @@ util01@college-vouziers:~/RASPI_Custom$ wget https://github.com/Hexxeh/rpi-firmw
 ```
 
 
-15/ Copie des nouveaux fichiers de démarrage.
+### 15/ Copie des nouveaux fichiers de démarrage.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo cp start4.elf /srv/nfs/rpi4-image_custom/boot/
@@ -214,7 +214,7 @@ util01@college-vouziers:~/RASPI_Custom$ sudo cp fixup4.dat /srv/nfs/rpi4-image_c
 ```
 
 
-16/ Configuration du serveur NFS.
+### 16/ Configuration du serveur NFS.
 
 Ouvrir :
 
@@ -229,7 +229,7 @@ ajouter a la fin :
 ```
 
 
-17/ Pour un Raspberry 4, création du lien symbolique dont le nom est l'adresse MAC du Raspberry Pi.
+### 17/ Pour un Raspberry 4, création du lien symbolique dont le nom est l'adresse MAC du Raspberry Pi.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ cd /srv/tftpboot/
@@ -242,7 +242,7 @@ util01@server:/srv/tftpboot$ sudo ln -s /srv/nfs/rpi4-image_custom/boot/ dc-a6-3
 ```
 
 
-18/ Suppression les lignes contenant 'UUID' dans le fichier '/etc/fstab'. de chaque Raspberry
+### 18/ Suppression les lignes contenant 'UUID' dans le fichier '/etc/fstab'. de chaque Raspberry
 
 Ouvrir :
 
@@ -253,14 +253,14 @@ Ouvrir :
 Supprimer toutes les lignes incluant 'UUID'.
 
 
-19/ Activation du service SSH au démarrage.
+### 19/ Activation du service SSH au démarrage.
 
 ```
 util01@college-vouziers:~/RASPI_Custom$ sudo touch /srv/nfs/rpi4-image_custom/boot/ssh
 ```
 
 
-20/ Configuration du fichier de démarrage du Raspberry Pi
+### 20/ Configuration du fichier de démarrage du Raspberry Pi
 
 Elle permet d'indiquer quelle image Raspberry OS à utiliser.
 
@@ -271,15 +271,15 @@ Ouvrir :
 ```
 
 Remplacer tout par :
-// Sur une seule ligne !!!!!
+/!\ Sur une seule ligne !!!!!  /!\
 
 ```
 console=serial0,115200 console=tty root=/dev/nfs nfsroot=192.168.2.100:/srv/nfs/rpi4-image_custom,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
 ```
 
 
-21/ Redémarrer le serveur
+### 21/ Redémarrer le serveur
 
 
-22/ Redémarrer le Raspberry Pi.
+### 22/ Redémarrer le Raspberry Pi.
 

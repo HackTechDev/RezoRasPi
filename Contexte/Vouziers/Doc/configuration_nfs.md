@@ -1,7 +1,7 @@
 #### Configuration NFS
 
 
-3/ Répertoire home séparé.
+### 3/ Répertoire home séparé.
 
 Le device /dev/sdb contiendra le home de tous les utilisateurs, il sera donc monté dans le répertoire /srv/nfs/user
 

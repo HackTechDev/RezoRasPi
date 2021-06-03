@@ -1,8 +1,7 @@
-Ajout d'un Raspberry Pi 4
-=========================
+#### Ajout d'un Raspberry Pi 4
 
 
-1/ sur le client Raspberry Pi 4 : Récupération des informations techniques.
+### 1/ sur le client Raspberry Pi 4 : Récupération des informations techniques.
 
 Raspberry Pi 4 #2 :
 
@@ -16,7 +15,7 @@ PI_SERIAL = d03114
 MAC = dc:a6:32:b7:fe:da
 ```
 
-2/ Pour ce Raspberry 4 #2 : Création du lien symbolique avec pour nom l'adresse MAC.
+### 2/ Pour ce Raspberry 4 #2 : Création du lien symbolique avec pour nom l'adresse MAC.
 
 L'adresse MAC est en minuscule, les deux-points sont remplacés par un tiret.
 

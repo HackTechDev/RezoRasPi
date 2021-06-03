@@ -1,6 +1,7 @@
 #### Configuration Arduino
 
-1/ Lancement de l'IDE Arduino en root via un utilisateur normal.
+
+### 1/ Lancement de l'IDE Arduino en root via un utilisateur normal.
 
 - Lancement de Arduino : 
 

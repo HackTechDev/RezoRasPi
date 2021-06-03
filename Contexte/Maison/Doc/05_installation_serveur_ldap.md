@@ -1,10 +1,10 @@
-Installation du serveur LDAP 
-============================
+#### Installation du serveur LDAP 
+
 
 Distribution de travail : Ubuntu 20.04 LTS
 
 
-I/ Installation du serveur LDAP.
+### I/ Installation du serveur LDAP.
 
 Liens : 
 https://www.instructables.com/Make-Raspberry-Pi-into-a-LDAP-Server/
@@ -12,7 +12,7 @@ http://blog.crazypi.com/install-configure-basic-ldap-server-raspberry-pi/
 https://openclassrooms.com/fr/courses/1733551-gerez-votre-serveur-linux-et-ses-services/5236036-installez-un-annuaire-ldap
 
 
-1/ Modification du hostname.
+### 1/ Modification du hostname.
 
 ```
 util01@server:~$ sudo hostnamectl set-hostname college-vouziers.fr
@@ -23,7 +23,8 @@ util01@server:~$ hostname
 college-vouziers.fr
 ```
 
-2/ Nommage du hostname. 
+
+### 2/ Nommage du hostname. 
 
 Ouvrir : 
 
@@ -44,7 +45,7 @@ college-vouziers.fr
 ```
 
 
-3/ Vérification.
+### 3/ Vérification.
 
 ```
 util01@server:~$ hostnamectl
@@ -52,7 +53,7 @@ util01@server:~$ hostnamectl
 ```
 
 
-4/ Installation des paquets LDAP.
+### 4/ Installation des paquets LDAP.
 
 ```
 util01@server:~$ sudo apt-get install slapd ldap-utils 
@@ -64,7 +65,7 @@ util01@server:~$ sudo apt-get install slapd ldap-utils
 ```
 
 
-5/ Configuration. 
+### 5/ Configuration. 
 
 ```
 DIT : Directory Information Tree
@@ -96,7 +97,7 @@ util01@server:~$ sudo dpkg-reconfigure slapd
 ```
 
 
-6/ Test.
+### 6/ Test.
 
 ```
 util01@server:~$ sudo ldapsearch -Q -L -Y EXTERNAL -H ldapi:/// -b dc=college-vouziers,dc=fr
@@ -131,7 +132,7 @@ description: LDAP administrator
 ```
 
 
-7/ Installation de l'outil de gestion.
+### 7/ Installation de l'outil de gestion.
 
 Lien :
 https://kifarunix.com/install-and-setup-phpldapadmin-on-ubuntu-20-04/
@@ -146,7 +147,7 @@ util01@college-vouziers:~$ sudo apt-get install phpldapadmin
 http://192.168.1.42/phpldapadmin/
 ```
 
-8/ Erreur : 
+### 8/ Erreur : 
 
 ```
 Deprecated: Array and string offset access syntax with curly braces is deprecated in /usr/share/phpldapadmin/lib/functions.php on line 1614
@@ -173,7 +174,7 @@ Remplacer par :
 ```
 
 
-9/ Configuration.
+### 9/ Configuration.
 
 Ouvrir : 
 
@@ -224,7 +225,7 @@ $servers->setValue('login','bind_id','cn=admin,dc=college-vouziers,dc=fr');
 ```
 
 
-10/ Connexion au serveur LDAP.
+### 10/ Connexion au serveur LDAP.
 
 Adresse web de l'application :
 http://192.168.1.42/phpldapadmin/
@@ -234,7 +235,7 @@ DN de connexion: cn=admin,dc=college-vouziers,dc=fr
 Mot de passe: admin
 
 
-11/ Création d'un utilisateur 'posixGroup'.
+### 11/ Création d'un utilisateur 'posixGroup'.
 
 ```
 - [dc=college-vouziers,dc=fr (1)]
@@ -248,7 +249,7 @@ Mot de passe: admin
 ```
        
 
-12/ Genération d'un mot de passe pour un utilisateur.
+### 12/ Genération d'un mot de passe pour un utilisateur.
 
 ```
 util01@college-vouziers:~$ slappasswd
@@ -280,7 +281,7 @@ Re-enter new password: mot2passe
 ```
  
 
-14/ Confirmation de la création de l'utilisateur.
+### 14/ Confirmation de la création de l'utilisateur.
 
 ```
 util01@college-vouziers:~$ ldapsearch -H ldapi:/// -Y EXTERNAL -b "dc=college-vouziers,dc=fr" "(&(objectclass=posixAccount)(uid=samuelgondouin))" -LLL -Q
@@ -288,7 +289,7 @@ util01@college-vouziers:~$ ldapsearch -H ldapi:/// -Y EXTERNAL -b "dc=college-vo
 ```
 
 
-15/ Test. 
+### 15/ Test. 
 
 ```
 util01@college-vouziers:~$ sudo ldapsearch -Q -L -Y EXTERNAL -H ldapi:/// -b dc=college-vouziers,dc=fr
@@ -344,7 +345,7 @@ loginShell: /bin/bash
 ```
 
 
-16/ Vérification de l'annuaire dans le système de fichier.
+### 16/ Vérification de l'annuaire dans le système de fichier.
 
 ```
 util01@college-vouziers:~$ sudo su
@@ -355,13 +356,13 @@ total 112
 ```
 
 
-II/ Configuration de la page de connexion du Raspberry Pi.
+### II/ Configuration de la page de connexion du Raspberry Pi.
 
 Lien :
 https://www.instructables.com/Make-Raspberry-Pi-a-Multi-User-Desktop/
 
 
-1/ A partir du serveur, connexion sur un Raspberry Pi.
+### 1/ A partir du serveur, connexion sur un Raspberry Pi.
 
 ```
 util01@college-vouziers:~$ ssh pi@192.168.2.64
@@ -370,7 +371,7 @@ pi@raspberrypi:~ $
 ```
 
 
-2/ Configuration de la page de login : Désactivation de la connexion automatique de l'utilisateur par défaut 'pi'.
+### 2/ Configuration de la page de login : Désactivation de la connexion automatique de l'utilisateur par défaut 'pi'.
 
 Ouvrir : 
 
@@ -391,7 +392,7 @@ Commenter :
 ```
 
 
-3/ Configuration de la page de login : Activation de la liste des utilisateurs.
+### 3/ Configuration de la page de login : Activation de la liste des utilisateurs.
 
 Ouvrir : 
 
@@ -412,7 +413,7 @@ greeter-hide-users=true
 ```
 
 
-4/ Activation d'un mot de passe pour l'utilisateur 'root' et de l'utilisateur 'pi'.
+### 4/ Activation d'un mot de passe pour l'utilisateur 'root' et de l'utilisateur 'pi'.
 
 Lien :
 https://www.instructables.com/Give-User-Shutdown-and-Reboot-Privileges-in-Raspbe/
@@ -432,7 +433,7 @@ passwd: password updated successfully
 ```
 
 
-III/ Installation du client LDAP sur le Raspberry Pi.
+### III/ Installation du client LDAP sur le Raspberry Pi.
 
 Lien : 
 https://www.instructables.com/Make-Raspberry-Pi-do-LDAP-Authentication/
@@ -440,7 +441,7 @@ https://www.instructables.com/Make-Raspberry-Pi-do-LDAP-Authentication/
 
 Sur le Raspberry Pi.
 
-1/ Changement du 'hostname'.
+### 1/ Changement du 'hostname'.
 
 Ouvrir : 
 
@@ -457,7 +458,7 @@ ordinateur.college-vouziers.fr
 ```
 
 
-2/ Installation des paquets client de LDAP.
+### 2/ Installation des paquets client de LDAP.
 
 ```
 pi@raspberrypi:~ $ sudo apt-get install libnss-ldapd
@@ -473,7 +474,7 @@ pi@raspberrypi:~ $ sudo apt-get install libnss-ldapd
 ```
   
 
-3/ Configuration de  Name Service LDAP Connection Daemon (nslcd).
+### 3/ Configuration de  Name Service LDAP Connection Daemon (nslcd).
 
 Ouvrir : 
 
@@ -506,7 +507,7 @@ base dc=college-vouziers,dc=fr
 ```
   
   
-4/ Configuration de Name Service Switch.
+### 4/ Configuration de Name Service Switch.
 
 Ouvrir : 
 
@@ -532,7 +533,7 @@ netgroup:       nis
 ```
   
   
-5/ Configuration de Pluggable Authentication Modules (PAM).
+### 5/ Configuration de Pluggable Authentication Modules (PAM).
 
 ```
 pi@raspberrypi:~ $ sudo pam-auth-update
@@ -548,7 +549,7 @@ pi@raspberrypi:~ $ sudo pam-auth-update
 ```
 
 
-6/ Arrêt et redémarrage des services.
+### 6/ Arrêt et redémarrage des services.
 
 ```
 pi@raspberrypi:~ $ sudo service nslcd stop
@@ -573,10 +574,10 @@ Use raspi-config to set the country before use.
 ```
 
 
-8/ Redémarrage du client Raspberry Pi.
+### 8/ Redémarrage du client Raspberry Pi.
 
 
-9/ Test de la connexion avec un utilisateur.
+### 9/ Test de la connexion avec un utilisateur.
 
 Soit : 
 
@@ -590,14 +591,15 @@ sgondouin@raspberrypi:~ $ pwd
 /home/users/sgondouin
 ```
 
-IV/ Activation des logs du serveur.
+
+### IV/ Activation des logs du serveur.
 
 Liens : 
 http://tutoriels.meddeb.net/openldap-log-2/
 https://medium.com/@Dylan.Wang/how-to-enable-openldap-log-file-on-ubuntu-5abd4e44a8c
 
 
-1/ Création du fichier de configuration pour l'activation des log.
+### 1/ Création du fichier de configuration pour l'activation des log.
 
 Créer : 
 
@@ -614,13 +616,15 @@ replace: olcLogLevel
 olcLogLevel: stats
 ```
 
-2/ Execution du fichier de configuration add_slapdlog.ldif
+
+### 2/ Execution du fichier de configuration add_slapdlog.ldif
 
 ```
 util01@college-vouziers:~$ sudo ldapmodify -Y external -H ldapi:/// -f add_slapdlog.ldif
 ```
 
-3/ Fichier de configuration de Syslog.
+
+### 3/ Fichier de configuration de Syslog.
 
 Ouvrir : 
 
@@ -636,14 +640,14 @@ local4.*    /var/log/slapd.log;slapdtmpl
 ```
 
 
-4/ Rédemarrage du service syslog.
+### 4/ Rédemarrage du service syslog.
 
 ```
 util01@college-vouziers:~$ sudo service rsyslog restart
 ```
 
 
-5/ Test.
+### 5/ Test.
 
 - Log pour une recherche : 
 

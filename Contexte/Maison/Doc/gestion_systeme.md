@@ -1,8 +1,7 @@
-Documentation
-=============
+#### Gestion système
 
 
-1/ Depuis un poste Raspberry Pi, impossible de faire un mise-à-jour du système.
+### 1/ Depuis un poste Raspberry Pi, impossible de faire un mise-à-jour du système.
 
 Solution : 
 
@@ -21,7 +20,7 @@ deb http://raspbian.42.fr/debian/ buster main
 ```
 
 
-2/ Depuis le serveur, création de l'archive de sauvegarde de l'image Raspberry OS.
+### 2/ Depuis le serveur, création de l'archive de sauvegarde de l'image Raspberry OS.
 
 - Aller dans le répertoire de l'image :
 
@@ -53,7 +52,7 @@ rpi4-image_210201.tar
 ```
 
 
-3/ Depuis un poste Raspberry Pi, erreur de hostname : 
+### 3/ Depuis un poste Raspberry Pi, erreur de hostname : 
 
 ```
 sudo: unable to resolve host (none)
@@ -79,7 +78,7 @@ Supprimer :
 ```
 
  
-5/ Executer une commande d'administration avec un utilisteur normal sans être administrateur.
+### 5/ Executer une commande d'administration avec un utilisteur normal sans être administrateur.
 
 Lien : https://unix.stackexchange.com/questions/276474/how-can-i-execute-any-command-as-a-normal-user-without-sudo
 
@@ -113,9 +112,7 @@ $ miseajour update
 ```
 
 
-
-
-2/ Paramétrage pour que les élèves ne voient pas les dossiers des autres users
+### 2/ Paramétrage pour que les élèves ne voient pas les dossiers des autres users
 
 Depuis un client Raspberry Pi.
 
@@ -203,7 +200,7 @@ sgondouin@ordinateur:~ $
 ```
 
 
-3/ Changement de timezone.
+### 3/ Changement de timezone.
 
 Depuis un client Raspberry Pi.
 
@@ -308,8 +305,7 @@ Jan 15 13:14:24 ordinateur.college-vouziers.fr systemd-timesyncd[1348]: Synchron
 ```
 
 
-
-5/ Arrêt automatique à 18h.
+### 5/ Arrêt automatique à 18h.
 
 Depuis le serveur.
 
@@ -325,7 +321,8 @@ Ajouter :
 0 18 * * * root /sbin/poweroff
 ```
 
-6/ Activation des log de Dnsmasq.
+
+### 6/ Activation des log de Dnsmasq.
 
 Lien : 
 https://itectec.com/superuser/how-to-log-all-dns-requests-made-through-openwrt-router/

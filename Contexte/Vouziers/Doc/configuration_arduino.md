@@ -1,7 +1,7 @@
 #### Configuration Arduino
 
 
-1/ Lancement de l'IDE Arduino en root via un utilisateur normal.
+### 1/ Lancement de l'IDE Arduino en root via un utilisateur normal.
 
 Lien : https://unix.stackexchange.com/questions/276474/how-can-i-execute-any-command-as-a-normal-user-without-sudo
 

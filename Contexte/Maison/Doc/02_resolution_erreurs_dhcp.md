@@ -1,7 +1,7 @@
-Erreur et résolution lors du lancement du serveur DHCP
-======================================================
+#### Erreur et résolution lors du lancement du serveur DHCP
 
-1/ Erreur 1.
+
+### 1/ Erreur 1.
 
 ```
 …
@@ -38,7 +38,7 @@ util01@server:~/RASPSERVER$ sudo systemctl stop systemd-resolved
 ```
 
 
-2/ Erreur 2.
+### 2/ Erreur 2.
 
 ```
 déc. 11 13:22:44 server dnsmasq[732]: directory /etc/resolv.conf for resolv-file is missing, cannot poll

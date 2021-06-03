@@ -1,5 +1,4 @@
-Installation de serveurs DHCP et NFS
-====================================
+#### Installation de serveurs DHCP et NFS
 
 Distribution de travail : Ubuntu 20.04 LTS
 
@@ -16,8 +15,7 @@ Lien :
 https://www.virtuallyghetto.com/2020/07/two-methods-to-network-boot-raspberry-pi-4.html
 
 
-
-1/ Serveur : Configuration réseau.
+### 1/ Serveur : Configuration réseau.
 
 ```
 Interface réseau :  enp2s0
@@ -30,7 +28,7 @@ Interface réseau :  wlp4s0
 Cette adresse ipv4 est attribuée par le serveur DHCP de la Box Internet.
 
 
-2/ Récupération des informations réseau d'un client Raspberry Pi 4: 
+### 2/ Récupération des informations réseau d'un client Raspberry Pi 4: 
 
 Pour le Raspberry Pi 4 #1 :
 
@@ -38,27 +36,30 @@ Pour le Raspberry Pi 4 #1 :
 @MAC = dc:a6:32:22:ce:87
 ```
 
-3/ Mise-à-jour du système d’exploitation Ubuntu.
+
+### 3/ Mise-à-jour du système d’exploitation Ubuntu.
 
 ```
 util01@server:~$ sudo apt-get update
 util01@server:~$ sudo apt-get upgrade
 ```
 
-4/ Installation des outils de base.
+
+### 4/ Installation des outils de base.
 
 ```
 util01@server:~$ sudo apt-get install openssh-server openssh-client mc vim screen htop wget links
 ```
 
 
-5/ Installation des utilitaires pour la configuration de PXE.
+### 5/ Installation des utilitaires pour la configuration de PXE.
 
 ```
 util01@server:~$ sudo apt-get install nfs-kernel-server dnsmasq kpartx unzip
 ```
 
-6/ Création du répertoire de travail.
+
+### 6/ Création du répertoire de travail.
 
 ```
 util01@server:~$ mkdir -p RASPSERVER
@@ -66,7 +67,8 @@ util01@server:~$ cd RASPSERVER/
 util01@server:~/RASPSERVER$ 
 ```
 
-7/ Téléchargement de l’image de l’OS Raspberry Pi OS daté du 2020-12-02
+
+### 7/ Téléchargement de l’image de l’OS Raspberry Pi OS daté du 2020-12-02
 
 Lien :
 https://www.raspberrypi.org/software/operating-systems/
@@ -76,7 +78,7 @@ util01@server:~/RASPSERVER$ wget https://downloads.raspberrypi.org/raspios_armhf
 ```
 
 
-8/ Décompression de l’archive de l’image.
+### 8/ Décompression de l’archive de l’image.
 
 ```
 util01@server:~/RASPSERVER$ unzip 2020-12-02-raspios-buster-armhf.zip 
@@ -85,7 +87,7 @@ Archive:  2020-12-02-raspios-buster-armhf.zip
 ```
 
 
-9/ Création des mappes de périphérique à partir de l’image.
+### 9/ Création des mappes de périphérique à partir de l’image.
 
 ```
 util01@server:~/RASPSERVER$ sudo kpartx -a -v 2020-12-02-raspios-buster-armhf.img
@@ -101,7 +103,8 @@ util01@server:~/RASPSERVER$ mkdir rootmnt
 util01@server:~/RASPSERVER$ mkdir bootmnt
 ```
 
-11/ Montage les devices vers les répertoires de montage.
+
+### 11/ Montage les devices vers les répertoires de montage.
 
 ```
 util01@server:~/RASPSERVER$ sudo mount /dev/mapper/loop6p1 bootmnt/
@@ -109,20 +112,22 @@ util01@server:~/RASPSERVER$ sudo mount /dev/mapper/loop6p2 rootmnt/
 ```
 
 
-12/ Création du répertoire de l'image de Raspberry Pi OS.
+### 12/ Création du répertoire de l'image de Raspberry Pi OS.
 
 ```
 util01@server:~/RASPSERVER$ sudo mkdir -p /srv/nfs/rpi4-image
 ```
 
-13/ Copie des fichiers de l’image vers le répertoire réseau spécifique à un Raspberry Pi. 
+
+### 13/ Copie des fichiers de l’image vers le répertoire réseau spécifique à un Raspberry Pi. 
 
 ```
 util01@server:~/RASPSERVER$ sudo cp -a rootmnt/* /srv/nfs/rpi4-image/
 util01@server:~/RASPSERVER$ sudo cp -a bootmnt/* /srv/nfs/rpi4-image/boot/
 ```
 
-14/ Suppression des fichiers de démarrage par défauts.
+
+### 14/ Suppression des fichiers de démarrage par défauts.
 
 ```
 util01@server:~/RASPSERVER$ sudo rm /srv/nfs/rpi4-image/boot/start4.elf
@@ -130,7 +135,7 @@ util01@server:~/RASPSERVER$ sudo rm /srv/nfs/rpi4-image/boot/fixup4.dat
 ```
 
 
-15/ Téléchargement des fichiers de démarrage dans leurs dernières versions.
+### 15/ Téléchargement des fichiers de démarrage dans leurs dernières versions.
 
 ```
 util01@server:~/RASPSERVER$ wget https://github.com/Hexxeh/rpi-firmware/raw/stable/start4.elf 
@@ -138,7 +143,7 @@ util01@server:~/RASPSERVER$ wget https://github.com/Hexxeh/rpi-firmware/raw/stab
 ```
 
 
-16/ Copie des nouveaux fichiers de démarrage.
+### 16/ Copie des nouveaux fichiers de démarrage.
 
 ```
 util01@server:~/RASPSERVER$ sudo cp start4.elf /srv/nfs/rpi4-image/boot/
@@ -146,7 +151,7 @@ util01@server:~/RASPSERVER$ sudo cp fixup4.dat /srv/nfs/rpi4-image/boot/
 ```
 
 
-17/ Configuration du serveur NFS.
+### 17/ Configuration du serveur NFS.
 
 Ouvrir :
 
@@ -161,7 +166,7 @@ Ajouter à la fin :
 ```
 
 
-18/ Pour le Raspberry 4 #1 : Création du lien symbolique avec pour nom l'adresse MAC.
+### 18/ Pour le Raspberry 4 #1 : Création du lien symbolique avec pour nom l'adresse MAC.
 
 ```
 util01@server:~/RASPSERVER$ cd /srv/tftpboot/
@@ -173,7 +178,8 @@ L'adresse MAC est en minuscule, les deux-points sont remplacés par un tiret.
 util01@server:/srv/tftpboot$ sudo ln -s /srv/nfs/rpi4-image/boot/ dc-a6-32-22-ce-87
 ```
 
-19/ Configuration du serveur DHCP pour la reconnaissance du répertoire de boot à partir de l'adresse MAC.
+
+### 19/ Configuration du serveur DHCP pour la reconnaissance du répertoire de boot à partir de l'adresse MAC.
 
 Liens :
 https://stackoverflow.com/questions/40008276/dnsmasq-different-tftp-root-for-each-macaddress/51508180
@@ -208,7 +214,7 @@ pxe-service=0,"Raspberry Pi Boot"
 ```
 
 
-21/ Suppression les lignes contenant 'UUID' dans le fichier '/etc/fstab'. de chaque Raspberry
+### 21/ Suppression les lignes contenant 'UUID' dans le fichier '/etc/fstab'. de chaque Raspberry
 
 Ouvrir :
 
@@ -219,14 +225,14 @@ Ouvrir :
 Supprimer toutes les lignes incluant 'UUID'.
 
 
-22/ Activation du service SSH au démarrage.
+### 22/ Activation du service SSH au démarrage.
 
 ```
 util01@server:~/RASPSERVER$ sudo touch /srv/nfs/rpi4-image/boot/ssh
 ```
 
 
-23/ Configuration du fichier de démarrage du Raspberry Pi
+### 23/ Configuration du fichier de démarrage du Raspberry Pi
 
 Elle permet d'indiquer quelle image Raspberry OS à utiliser.
 
@@ -243,7 +249,8 @@ Remplacer tout par :
 console=serial0,115200 console=tty root=/dev/nfs nfsroot=192.168.2.100:/srv/nfs/rpi4-image,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
 ```
 
-24/ Vérification de la configuration réseau actuel. 
+
+### 24/ Vérification de la configuration réseau actuel. 
 
 ```
 util01@server:~$ ip a
@@ -264,7 +271,7 @@ util01@server:~$ ip a
 ```
 
 
-25/ Activer une adresse IP statique pour l’interface réseau : enp2s0.
+### 25/ Activer une adresse IP statique pour l’interface réseau : enp2s0.
 
 Lien :
 https://www.howtoforge.com/linux-basics-set-a-static-ip-on-ubuntu
@@ -313,7 +320,7 @@ util01@server:~$ ip a
 ```
 
 
-26/ Activation de tous les services.
+### 26/ Activation de tous les services.
 
 ```
 util01@server:~/RASPSERVER$ sudo systemctl enable dnsmasq
@@ -335,7 +342,7 @@ util01@server:~/RASPSERVER$ sudo systemctl enable nfs-kernel-server
 ```
 
 
-27/ Démarrage de tous les services.
+### 27/ Démarrage de tous les services.
 
 ```
 util01@server:~/RASPSERVER$ sudo systemctl start rpcbind
@@ -344,7 +351,7 @@ util01@server:~/RASPSERVER$ sudo systemctl restart nfs-kernel-server
 ```
 
 
-28/ Lancement du service DHCP 'dnsmasq'.
+### 28/ Lancement du service DHCP 'dnsmasq'.
 
 ```
 util01@server:~/RASPSERVER$ sudo killall dnsmasq
@@ -367,19 +374,19 @@ Erreur possible :
 7_resolution_erreurs_DHCP.md
 
 
-29/ Visualisation des logs. 
+### 29/ Visualisation des logs. 
 
 ```
 util01@server:~/RASPSERVER$ tail -f /var/log/syslog
 ```
 
 
-30/ Allumer l'un des Raspberry Pi 4 du réseau 192.168.2.0/24
+### 30/ Allumer l'un des Raspberry Pi 4 du réseau 192.168.2.0/24
 
 Après quelques secondes, le bureau s'affiche.
 
 
-31/ Affichage des interfaces réseaux de ce Raspberry Pi 4.
+### 31/ Affichage des interfaces réseaux de ce Raspberry Pi 4.
 
 ```
 pi@raspberrypi:~ $ ip a
@@ -400,7 +407,7 @@ pi@raspberrypi:~ $ ip a
 ```
 
 
-32/ Connexion ssh depuis le serveur vers ce raspberry Pi 4.
+### 32/ Connexion ssh depuis le serveur vers ce raspberry Pi 4.
 
 ```
 util01@server:~$ ssh pi@192.168.2.64

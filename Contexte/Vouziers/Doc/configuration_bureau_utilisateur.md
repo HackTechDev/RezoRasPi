@@ -1,8 +1,8 @@
-Configuration du bureau des utilisateurs
+#### Configuration du bureau des utilisateurs
 
 
 
-2/ Mettre les icônes sur le bureau de l'utilisateur.
+### 2/ Mettre les icônes sur le bureau de l'utilisateur.
 
 ```
 root@raspberry:/home/pi# cp -R .local/ /home/users/CACHIERE/
@@ -18,8 +18,7 @@ root@raspberry:/home/pi# chmod 755 .config/ -R
 ```
 
 
-
-5/ Reinitialisation du bureau
+### 5/ Reinitialisation du bureau
 
 - Le squelette de bureau est dans le répertoire : 
 

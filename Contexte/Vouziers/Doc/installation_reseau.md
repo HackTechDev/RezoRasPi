@@ -1,6 +1,8 @@
 #### Installation réseau
 
-1/ Demander à l'administrateur réseau du collègue de mettre l'adresse ip fixe, ici @ip:10.108.39.173, pour la carte réseau du serveur.
+
+### 1/ Demander à l'administrateur réseau du collègue de mettre l'adresse ip fixe, ici @ip:10.108.39.173, pour la carte réseau du serveur.
+
 Il faudra lui fournir l'adresse MAC de la carte réseau : 
 
 ```
@@ -16,7 +18,6 @@ technovz@technovz-serveur-rasp:~$ ip a
 ```
 
 ici : ec:10:69:81:ec:10
-
 
 
 Pour la carte réseau' enp5s0', mettre en adresse ipv4 manuel avec les paramètres suivants : 

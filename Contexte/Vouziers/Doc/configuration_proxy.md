@@ -1,7 +1,7 @@
-### Pour le serveur et pour les clients : Configuration du Proxy
+#### Pour le serveur et pour les clients : Configuration du Proxy
 
 
-#### 1/ Pour Apt.
+### 1/ Pour Apt.
 
 Lien :
 https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/
@@ -39,7 +39,7 @@ git config --global http.proxy http://192.168.224.254:3128
 ```
 
 
-#### Pour un client Raspi : Configuration proxy
+### Pour un client Raspi : Configuration proxy
 
 Depuis le serveur, ouvrir :
 

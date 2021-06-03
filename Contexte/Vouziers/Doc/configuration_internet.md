@@ -1,18 +1,19 @@
-Configuration de la connexion internet
-======================================
+#### Configuration de la connexion internet
+
 
 Distribution de travail : Ubuntu 20.04 LTS
 
 
-I/ Sur le serveur : Priorisation de l'interface réseau.
+### I/ Sur le serveur : Priorisation de l'interface réseau.
 
-1/ Installation des outils de configuration réseau.
+### 1/ Installation des outils de configuration réseau.
 
 ```
 util01@server:~$ sudo apt-get install net-tools ifmetric
 ```
 
-2/ Vérification des adresses ip des interfaces réseaux.
+
+### 2/ Vérification des adresses ip des interfaces réseaux.
 
 
 Interfaces réseau du serveur Ubuntu. 
@@ -31,14 +32,14 @@ Interface réseau :  enp5s0
 @ip : 10.108.39.60 (addresse attribuée par le serveur DHCP du réseau pédagogique du collège)
 
 
-3/ Affichage des routes.
+### 3/ Affichage des routes.
 
 ```
 util01@server:~$ route -n
 ```
 
 
-4/ Priorisation de l'interface réseau ayant Internet.
+### 4/ Priorisation de l'interface réseau ayant Internet.
 
 ```
 util01@server:~$ sudo ifmetric enp5s0 50
@@ -56,9 +57,9 @@ Destination     Passerelle      Genmask         Indic Metric Ref    Use Iface
 ```
 
 
-II/ Sur le serveur : Activation permanente de resolv.conf
+### II/ Sur le serveur : Activation permanente de resolv.conf
 
-1/ Installation de l'outil de gestion de resolver.
+### 1/ Installation de l'outil de gestion de resolver.
 
 Liens :
 https://www.tecmint.com/set-permanent-dns-nameservers-in-ubuntu-debian/
@@ -69,7 +70,8 @@ https://www.ricmedia.com/set-permanent-dns-nameservers-ubuntu-debian-resolv-conf
 util01@server:~$ sudo apt install resolvconf
 ```
 
-2/ Activation et démarrage du service resolv.conf
+
+### 2/ Activation et démarrage du service resolv.conf
 
 ```
 util01@server:~$ sudo systemctl enable resolvconf.service
@@ -77,7 +79,8 @@ util01@server:~$ sudo systemctl start resolvconf.service
 util01@server:~$ sudo systemctl status resolvconf.service
 ```
 
-3/ Ajout de serveurs DNS.
+
+### 3/ Ajout de serveurs DNS.
 
 
 Ouvrir : 
@@ -94,10 +97,10 @@ nameserver 8.8.4.4
 ```
 
 
-4/ Redémarrer le serveur.
+### 4/ Redémarrer le serveur.
 
 
-5/ Vérification.
+### 5/ Vérification.
 
 ```
 util01@server:~$ cat /etc/resolv.conf 
@@ -111,7 +114,7 @@ nameserver 127.0.0.1
 ```
 
 
-6/ Test.
+### 6/ Test.
 
 ```
 util01@server:~$ ping google.fr -c 2
@@ -125,7 +128,7 @@ rtt min/avg/max/mdev = 102.914/113.605/124.297/10.691 ms
 ```
 
 
-III/ Sur le serveur : Redirection du trafic réseau.
+### III/ Sur le serveur : Redirection du trafic réseau.
 
 Liens :
 https://help.ubuntu.com/community/Internet/ConnectionSharing
@@ -134,7 +137,7 @@ https://askubuntu.com/questions/790001/sharing-connection-ip192.168.30.255,proxy
 https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules
 
 
-1/ Activation du routage de paquet.
+### 1/ Activation du routage de paquet.
 
 Ouvrir : 
 
@@ -149,7 +152,7 @@ net.ipv4.ip_forward=1
 ```
 
 
-2/ Réglage des régles Iptables.
+### 2/ Réglage des régles Iptables.
 
 - Créer une connexion entre les 2 interfaces réseaux :
 Adapter le nom des interfaces réseaux (ici enp5s0 correspond à l'interface lié au réseau pédagogique du collège et enp3s0 correspond au réseau Raspberry) et l'adresse IP (192.16.1.100 correspond à l'IP du serveur sur le réseau Raspberry) 
@@ -183,7 +186,7 @@ util01@server:~$ sudo iptables -L -t nat -v
 ```
 
 
-3/ Persistance des régles Iptables.
+### 3/ Persistance des régles Iptables.
 
 ```
 util01@server:~$ sudo apt-get install iptables-persistent
@@ -191,11 +194,12 @@ util01@server:~$ sudo systemctl is-enabled netfilter-persistent.service
 util01@server:~$ sudo systemctl status netfilter-persistent.service
 ```
 
-IV/ Sur le client : Configuration de resolv.conf sur l'image du Raspberrypi
+### IV/ Sur le client : Configuration de resolv.conf sur l'image du Raspberrypi
 
 
-1/ Allumer un Raspberry  Pi
-- Sur le terminal du Raspberry, trouver l'adresse ip du raspberrypi, ici 192.168.1.75 :
+### 1/ Allumer un Raspberry  Pi
+
+- Sur le terminal du Raspberry, trouver l'adresse ip du Raspberry Pi, ici 192.168.1.75 :
 
 ```
 pi@raspberrypi:~$ ip a
@@ -206,7 +210,8 @@ pi@raspberrypi:~$ ip a
 util01@server:~$ ssh pi@192.168.1.75
 ```
 
-2/ Activer l'accès internet provisoire
+
+### 2/ Activer l'accès internet provisoire
 
 Ouvrir le fichier resolv.conf
 
@@ -223,14 +228,14 @@ nameserver 8.8.4.4
 ```
 
 
-3/ Installation de l'outil de configuration resolv.conf
+### 3/ Installation de l'outil de configuration resolv.conf
 
 ```
 pi@raspberrypi:~ $ sudo apt install resolvconf
 ```
 
 
-4/ Activation et démarrage du service resolver.
+### 4/ Activation et démarrage du service resolver.
 
 ```
 pi@raspberrypir:~$ sudo systemctl enable resolvconf.service
@@ -239,7 +244,7 @@ pi@raspberrypi:~$ sudo systemctl status resolvconf.service
 ```
 
 
-5/ Ajout de serveurs DNS.
+### 5/ Ajout de serveurs DNS.
 
 Ouvrir : 
 
@@ -255,7 +260,7 @@ nameserver 8.8.4.4
 ```
 
 
-6/ Ajout du proxy.
+### 6/ Ajout du proxy.
 
 A partir du serveur, se connecter en ssh à l'image RaspOs :
 
@@ -292,7 +297,7 @@ Defaults        env_keep+="http_proxy https_proxy no_proxy"
 ```
 
 
-7/ Configuration du proxy pour le terminal pour l'outil apt.
+### 7/ Configuration du proxy pour le terminal pour l'outil apt.
 
 Lien : 
 https://riptutorial.com/fr/raspberry-pi/example/25054/configuration-du-proxy
@@ -311,10 +316,10 @@ Acquire::https::Proxy "https://192.168.224.254:3128/";
 ```
 
 
-8/ Arrêter et redémarrer le Raspberry Pi 4 et le serveur.
+### 8/ Arrêter et redémarrer le Raspberry Pi 4 et le serveur.
 
 
-9/ Vérification.
+### 9/ Vérification.
 
 ```
 pi@raspberrypi:~ $ cat /etc/resolv.conf
@@ -326,7 +331,7 @@ nameserver 8.8.4.4
 ```
 
 
-10/ Tests de connexion.
+### 10/ Tests de connexion.
 
 - Test #1 : Vers le serveur Ubuntu.
 
@@ -370,7 +375,7 @@ rtt min/avg/max/mdev = 200.242/213.087/225.932/12.845 ms
 ```
 
 
-11/ Test de mise-à-jour et d'installation d'application via apt.
+### 11/ Test de mise-à-jour et d'installation d'application via apt.
 
 ```
 pi@raspberrypi:~ $ sudo apt-get update && sudo apt-get upgrade

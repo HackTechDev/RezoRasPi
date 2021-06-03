@@ -1,7 +1,7 @@
-Pour le serveur : Configuration du Proxy
-========================================
+### Pour le serveur et pour les clients : Configuration du Proxy
 
-1/ Pour Apt.
+
+#### 1/ Pour Apt.
 
 Lien :
 https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/
@@ -28,7 +28,7 @@ Acquire::https::Proxy "http://192.168.224.254@proxy.server:3128/";
 ```
 
 
-2/ Pour Git.
+#### 2/ Pour Git.
  
 Lien :
 https://gist.github.com/evantoli/f8c23a37eb3558ab8765
@@ -37,3 +37,34 @@ https://gist.github.com/evantoli/f8c23a37eb3558ab8765
 ```
 git config --global http.proxy http://192.168.224.254:3128
 ```
+
+
+#### Pour un client Raspi : Configuration proxy
+
+Depuis le serveur, ouvrir :
+
+```
+/srv/nfs/rpi4-image/etc/environment
+```
+
+Ajouter :
+
+```
+export http_proxy="http://10.108.39.1:3128"
+export https_proxy="https://10.108.39.1:3128"
+export no_proxy="localhost, 127.0.0.1"
+```
+
+
+Depuis le client, lancer visudo :
+
+```
+pi@raspberrypi:~ $ sudo visudo
+```
+
+Ajouter :
+
+```
+Defaults        env_keep+="http_proxy https_proxy no_proxy"
+```
+

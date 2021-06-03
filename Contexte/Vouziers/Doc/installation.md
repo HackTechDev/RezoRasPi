@@ -1,8 +1,6 @@
 Documentation spécifique pour la salle de technologie du collègue de Vouziers
 =============================================================================
 
-/!\ A tester /!\
-
 
 1/ Demander à l'administrateur réseau du collègue de mettre l'adresse ip fixe, ici @ip:10.108.39.173, pour la carte réseau du serveur.
 Il faudra lui fournir l'adresse MAC de la carte réseau : 

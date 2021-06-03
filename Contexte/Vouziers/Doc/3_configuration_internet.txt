@@ -4,87 +4,59 @@ Configuration de la connexion internet
 Distribution de travail : Ubuntu 20.04 LTS
 
 
-Interfaces réseau du serveur Ubuntu. 
-
-```
-* enp2s0
-@ip : 192.168.2.100
-Réseau local avec les Raspberry Pi 4
-
-
-* wlp4s0
-@ip : 192.168.1.42
-Réseau local avec une connexion internet
-```
-
-
-I/ Priorisation de l'interface réseau.
+I/ Sur le serveur : Priorisation de l'interface réseau.
 
 1/ Installation des outils de configuration réseau.
 
 ```
-util01@server:~$ sudo apt-get install route net-tools ifmetric
+util01@server:~$ sudo apt-get install net-tools ifmetric
 ```
-
 
 2/ Vérification des adresses ip des interfaces réseaux.
 
+
+Interfaces réseau du serveur Ubuntu. 
+Récupérer les paramètres des cartes réseaux et adresses IP respectives
+
 ```
 util01@server:~$ ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
-       valid_lft forever preferred_lft forever
-2: enp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 00:16:d3:65:58:d6 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.2.100/24 brd 192.168.2.255 scope global noprefixroute enp2s0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::216:d3ff:fe65:58d6/64 scope link 
-       valid_lft forever preferred_lft forever
-3: wlp4s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:1b:77:26:7e:93 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.42/24 brd 192.168.1.255 scope global dynamic noprefixroute wlp4s0
-       valid_lft 86308sec preferred_lft 86308sec
-    inet6 fe80::c165:8fc2:229d:22c9/64 scope link noprefixroute 
-       valid_lft forever preferred_lft forever
 ```
+
+Réseau Raspberry :
+Interface réseau :  enp3s0
+@ip : 192.168.1.100
+
+Réseau pédagogique collège :
+Interface réseau :  enp5s0
+@ip : 10.108.39.60 (addresse attribuée par le serveur DHCP du réseau pédagogique du collège)
 
 
 3/ Affichage des routes.
 
 ```
 util01@server:~$ route -n
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-0.0.0.0         192.168.2.1     0.0.0.0         UG    20100  0        0 enp2s0
-0.0.0.0         192.168.1.1     0.0.0.0         UG    20600  0        0 wlp4s0
-169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 enp2s0
-192.168.1.0     0.0.0.0         255.255.255.0   U     600    0        0 wlp4s0
-192.168.2.0     0.0.0.0         255.255.255.0   U     100    0        0 enp2s0
 ```
 
 
 4/ Priorisation de l'interface réseau ayant Internet.
 
 ```
-util01@server:~$ sudo ifmetric wlp4s0 50
+util01@server:~$ sudo ifmetric enp5s0 50
 ```
 
 ```
 util01@server:~$ route -n
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-0.0.0.0         192.168.1.1     0.0.0.0         UG    50     0        0 wlp4s0
-0.0.0.0         192.168.2.1     0.0.0.0         UG    20100  0        0 enp2s0
-169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 enp2s0
-192.168.1.0     0.0.0.0         255.255.255.0   U     50     0        0 wlp4s0
-192.168.2.0     0.0.0.0         255.255.255.0   U     100    0        0 enp2s0
+Table de routage IP du noyau
+Destination     Passerelle      Genmask         Indic Metric Ref    Use Iface
+0.0.0.0         10.108.39.1     0.0.0.0         UG    100    0        0 enp5s0
+0.0.0.0         192.168.1.1     0.0.0.0         UG    20101  0        0 enp3s0
+10.108.39.0     0.0.0.0         255.255.255.0   U     100    0        0 enp5s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 enp5s0
+192.168.1.0     0.0.0.0         255.255.255.0   U     101    0        0 enp3s0
 ```
 
 
-II/ Activation permanente de resolv.conf
+II/ Sur le serveur : Activation permanente de resolv.conf
 
 1/ Installation de l'outil de gestion de resolver.
 
@@ -97,7 +69,6 @@ https://www.ricmedia.com/set-permanent-dns-nameservers-ubuntu-debian-resolv-conf
 util01@server:~$ sudo apt install resolvconf
 ```
 
-
 2/ Activation et démarrage du service resolv.conf
 
 ```
@@ -108,10 +79,11 @@ util01@server:~$ sudo systemctl status resolvconf.service
 
 3/ Ajout de serveurs DNS.
 
+
 Ouvrir : 
 
 ```
-/etc/resolvconf/resolv.conf.d/head
+util01@server:~$ sudo nano /etc/resolvconf/resolv.conf.d/head
 ```
 
 Ajouter :
@@ -120,6 +92,7 @@ Ajouter :
 nameserver 8.8.8.8 
 nameserver 8.8.4.4
 ```
+
 
 4/ Redémarrer le serveur.
 
@@ -152,12 +125,12 @@ rtt min/avg/max/mdev = 102.914/113.605/124.297/10.691 ms
 ```
 
 
-III/ Sur le serveur : Redirection de traffic.
+III/ Sur le serveur : Redirection du trafic réseau.
 
 Liens :
 https://help.ubuntu.com/community/Internet/ConnectionSharing
 https://www.wikihow.com/Add-or-Change-the-Default-Gateway-in-Linux
-https://askubuntu.com/questions/790001/sharing-connection-iptables
+https://askubuntu.com/questions/790001/sharing-connection-ip192.168.30.255,proxytables
 https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules
 
 
@@ -166,7 +139,7 @@ https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables
 Ouvrir : 
 
 ```
-/etc/sysctl.conf
+util01@server:~$ sudo nano /etc/sysctl.conf
 ```
 
 Chercher et décommenter : 
@@ -178,10 +151,11 @@ net.ipv4.ip_forward=1
 
 2/ Réglage des régles Iptables.
 
-- Créer une connexion entre les 2 interfaces réseaux via la redirection de traffic :
+- Créer une connexion entre les 2 interfaces réseaux :
+Adapter le nom des interfaces réseaux (ici enp5s0 correspond à l'interface lié au réseau pédagogique du collège et enp3s0 correspond au réseau Raspberry) et l'adresse IP (192.16.1.100 correspond à l'IP du serveur sur le réseau Raspberry) 
 
 ```
-util01@server:~$ sudo iptables -A FORWARD -o wlp4s0 -i enp2s0 -s 192.168.2.100/24 -m conntrack --ctstate NEW -j ACCEPT
+util01@server:~$ sudo iptables -A FORWARD -o enp5s0 -i enp3s0 -s 192.168.1.100/24 -m conntrack --ctstate NEW -j ACCEPT
 ```
 
 - Trace les connexions :
@@ -196,10 +170,10 @@ util01@server:~$ sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,REL
 util01@server:~$ sudo iptables -t nat -F POSTROUTING
 ```
 
-- Masquage d'adresse ip :
+- Masquage d'adresse IP :
 
 ```
-util01@server:~$ sudo iptables -t nat -A POSTROUTING -o wlp4s0 -j MASQUERADE
+util01@server:~$ sudo iptables -t nat -A POSTROUTING -o enp5s0 -j MASQUERADE
 ```
 
 - Liste les règles Iptables :
@@ -214,30 +188,58 @@ util01@server:~$ sudo iptables -L -t nat -v
 ```
 util01@server:~$ sudo apt-get install iptables-persistent
 util01@server:~$ sudo systemctl is-enabled netfilter-persistent.service
-enabled
 util01@server:~$ sudo systemctl status netfilter-persistent.service
 ```
 
-
-IV/ Sur le client : Configuration de resolv.conf
-
-1/ Installation de l'outil de configuration resolv.conf
-
-```
-util01@server:~$ sudo apt install resolvconf
-```
+IV/ Sur le client : Configuration de resolv.conf sur l'image du Raspberrypi
 
 
-2/ Activation et démarrage du service resolver.
+1/ Allumer un Raspberry  Pi
+- Sur le terminal du Raspberry, trouver l'adresse ip du raspberrypi, ici 192.168.1.75 :
 
 ```
-util01@server:~$ sudo systemctl enable resolvconf.service
-util01@server:~$ sudo systemctl start resolvconf.service
-util01@server:~$ sudo systemctl status resolvconf.service
+pi@raspberrypi:~$ ip a
+```
+
+- Sur le terminal du serveur
+```
+util01@server:~$ ssh pi@192.168.1.75
+```
+
+2/ Activer l'accès internet provisoire
+
+Ouvrir le fichier resolv.conf
+
+```
+pi@raspberrypi:~ $ sudo nano /etc/resolv.conf
 ```
 
 
-3/ Ajout de serveurs DNS.
+Effacer tout et ajouter :
+
+```
+nameserver 8.8.8.8 
+nameserver 8.8.4.4
+```
+
+
+3/ Installation de l'outil de configuration resolv.conf
+
+```
+pi@raspberrypi:~ $ sudo apt install resolvconf
+```
+
+
+4/ Activation et démarrage du service resolver.
+
+```
+pi@raspberrypir:~$ sudo systemctl enable resolvconf.service
+pi@raspberrypi:~$ sudo systemctl start resolvconf.service
+pi@raspberrypi:~$ sudo systemctl status resolvconf.service
+```
+
+
+5/ Ajout de serveurs DNS.
 
 Ouvrir : 
 
@@ -253,10 +255,66 @@ nameserver 8.8.4.4
 ```
 
 
-4/ Arrêter et redémarrer le Raspberry Pi 4.
+6/ Ajout du proxy.
+
+A partir du serveur, se connecter en ssh à l'image RaspOs :
+
+```
+util01@server:~$ ssh pi@192.168.1.75
+```
 
 
-5/ Vérification.
+Ouvrir le fichier environment :
+
+```
+pi@raspberrypi:~ $ sudo nano /etc/environment
+```
+
+Ajouter :
+
+```
+export http_proxy="http://192.168.224.254:3128"
+export https_proxy="https://192.168.224.254:3128"
+export no_proxy="localhost, 127.0.0.1"
+```
+
+
+Ouvrir visudo :
+
+```
+pi@raspberrypi:~ $ sudo visudo
+```
+
+Ajouter :
+
+```
+Defaults        env_keep+="http_proxy https_proxy no_proxy"
+```
+
+
+7/ Configuration du proxy pour le terminal pour l'outil apt.
+
+Lien : 
+https://riptutorial.com/fr/raspberry-pi/example/25054/configuration-du-proxy
+
+Ouvrir : 
+
+```
+pi@raspberrypi:~ $ sudo /etc/apt/apt.conf.d/10proxy
+```
+
+Ajouter : 
+
+```
+Acquire::http::Proxy "http://192.168.224.254:3128/";
+Acquire::https::Proxy "https://192.168.224.254:3128/";
+```
+
+
+8/ Arrêter et redémarrer le Raspberry Pi 4 et le serveur.
+
+
+9/ Vérification.
 
 ```
 pi@raspberrypi:~ $ cat /etc/resolv.conf
@@ -268,15 +326,15 @@ nameserver 8.8.4.4
 ```
 
 
-6/ Tests.
+10/ Tests de connexion.
 
 - Test #1 : Vers le serveur Ubuntu.
 
 ```
-pi@raspberrypi:~ $ ping 192.168.1.42 -c 2
-PING 192.168.1.42 (192.168.1.42) 56(84) bytes of data.
-64 bytes from 192.168.1.42: icmp_seq=1 ttl=64 time=0.337 ms
-64 bytes from 192.168.1.42: icmp_seq=2 ttl=64 time=0.406 ms
+pi@raspberrypi:~ $ ping 192.168.1.100 -c 2
+PING 192.168.1.42 (192.168.1.100) 56(84) bytes of data.
+64 bytes from 192.168.1.100: icmp_seq=1 ttl=64 time=0.337 ms
+64 bytes from 192.168.1.100: icmp_seq=2 ttl=64 time=0.406 ms
 
 --- 192.168.1.42 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 51ms
@@ -311,3 +369,10 @@ PING rocketchat.hacklab.run (146.59.154.144) 56(84) bytes of data.
 rtt min/avg/max/mdev = 200.242/213.087/225.932/12.845 ms
 ```
 
+
+11/ Test de mise-à-jour et d'installation d'application via apt.
+
+```
+pi@raspberrypi:~ $ sudo apt-get update && sudo apt-get upgrade
+pi@raspberrypi:~ $ sudo apt-get install vim screen mc links
+```

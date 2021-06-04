@@ -100,23 +100,9 @@ EOF;
 
 
 /*
- * Insert a ldif file in the LDAP
- */
-
-function insertUserInLDAP($domain, $tld) {
-    $output = shell_exec("ldapadd -x -f user_eleve.ldif -W -D cn=admin,dc=$domain,dc=$tld");
-
-    $lineLog = $output;
-    file_put_contents("inldap.log", $lineLog, FILE_APPEND | LOCK_EX);
-    
-}
-
-
-/*
  * Process the pupils file
  */
 
-unlink("user_eleve.ldif.tmp");
 //unlink("userldap.log");
 //unlink("inldap.log");
 

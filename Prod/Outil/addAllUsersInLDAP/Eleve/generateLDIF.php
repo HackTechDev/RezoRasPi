@@ -69,7 +69,7 @@ function createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $d
     // Create the user ldif
 
     $fileTmp = <<< EOF
-dn: cn=$firstname $lastname,dc=$domain,dc=$tld
+dn: cn=$firstname $lastname,dc=$domain
 cn: $firstname $lastname
 givenName: $firstname
 gidNumber: $gid
@@ -100,15 +100,14 @@ EOF;
 
 
 /*
- * Process the profs file
+ * Process the pupils file
  */
 
-//unlink("user_eleve.ldif.tmp");
 //unlink("userldap.log");
 //unlink("inldap.log");
 
 $row = 0;
-if (($handle = fopen("export_prof_juin2020.txt", "r")) !== FALSE) {
+if (($handle = fopen("export_eleve_juin2020.txt", "r")) !== FALSE) {
   while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if($row == 0 ) {
         echo "";
@@ -122,10 +121,10 @@ if (($handle = fopen("export_prof_juin2020.txt", "r")) !== FALSE) {
         $password = createPassword($passwordClear);
 
         // Replace the following values
-        $gid = 501; // Pupils group id
-        $uid = 1600 + $row; // User id 
-        $domain = "college-vouziers";
-        $tld = "fr";
+        $gid = 500; // Pupils group id
+        $uid = 1100 + $row; // User id 
+        $domain = "technovz-serveur-rasp";
+        $tld = "";
 
         echo $row . ";" . $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";";
         echo $password . ";";

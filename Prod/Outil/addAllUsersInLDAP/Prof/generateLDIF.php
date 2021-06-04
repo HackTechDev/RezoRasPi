@@ -69,7 +69,7 @@ function createUserLDIF($firstname, $lastname, $login, $password, $gid, $uid, $d
     // Create the user ldif
 
     $fileTmp = <<< EOF
-dn: cn=$firstname $lastname,dc=$domain,dc=$tld
+dn: cn=$firstname $lastname,dc=$domain
 cn: $firstname $lastname
 givenName: $firstname
 gidNumber: $gid
@@ -122,10 +122,10 @@ if (($handle = fopen("export_prof_juin2020.txt", "r")) !== FALSE) {
         $password = createPassword($passwordClear);
 
         // Replace the following values
-        $gid = 501; // Pupils group id
+        $gid = 501; // Profs group id
         $uid = 1600 + $row; // User id 
-        $domain = "college-vouziers";
-        $tld = "fr";
+        $domain = "technovz-serveur-rasp";
+        $tld = "";
 
         echo $row . ";" . $uid . ";" . $firstname . ";" . $lastname . ";" . $login  . ";" . $passwordClear . ";";
         echo $password . ";";

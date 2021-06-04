@@ -11,7 +11,7 @@ ldapsearch -o ldif-wrap=no -Q -LL -Y EXTERNAL -H ldapi:/// -b dc=college-vouzier
 cat userFound.txt | grep "dn: cn" > userFound1.txt
 
 
-### Avec vi, supprimer le début de chaque ligne : 
+### Avec vi, pour le fichier 'userFound1.txt ', supprimer le début de chaque ligne : 
 
 :1,$s/dn: //g
 

@@ -12,6 +12,7 @@ function shutdownRaspi($ip) {
     return $result; 
 }
 
+
 /*
  * Get all Raspberry Pi connected to the local network
  * https://serverfault.com/questions/786136/how-to-view-dnsmasq-client-mac-addresses-dynamically
@@ -25,6 +26,17 @@ function getAllRaspi() {
 
 
 /*
+ *
+ * https://stackoverflow.com/questions/13283674/how-to-ping-ip-addresses-in-php-and-give-results
+ */
+
+function ping($ip) {
+    $pingCommand = exec("ping -c 2 $ip", $output, $result);
+    return $result;
+}
+
+
+/*
  * Process shutdown of all Raspi
  */
 
@@ -34,7 +46,10 @@ function shutdownAllRaspi() {
     foreach($allRaspiArr as $raspi) {
         $data = explode(" ", $raspi);
         $ip = $data[2];
-        echo "Shutdown: " . $ip . " : " . shutdownRaspi($ip) . "\n";
+ 
+        if(ping($ip) == 0 ) {       
+            echo "Shutdown: " . $ip . " : " . shutdownRaspi($ip) . "\n";
+        }
     }
 }
 
@@ -43,5 +58,6 @@ function shutdownAllRaspi() {
  * Main
  */
 
-shutdownAllRaspi();
+//shutdownAllRaspi();
+
 ?>

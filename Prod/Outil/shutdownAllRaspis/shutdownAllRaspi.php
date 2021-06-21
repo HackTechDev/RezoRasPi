@@ -6,6 +6,7 @@
  */
 
 function shutdownRaspi($ip) {
+    echo "Shutdown: " . $ip . "\n";
     $adminUser = "pi";
     $shutdownCommand = exec("ssh -t $adminUser@" . $ip ." 'sudo shutdown -h now'", $output, $result);
 
@@ -19,6 +20,7 @@ function shutdownRaspi($ip) {
  */
 
 function getAllRaspi() {
+    echo "Get all Raspi Ip\n";
     $getAllRaspiCommand = exec("cat /var/lib/misc/dnsmasq.leases", $allRaspiArr);
 
     return $allRaspiArr;
@@ -31,6 +33,7 @@ function getAllRaspi() {
  */
 
 function ping($ip) {
+    echo "ping: ". $ip . "\n";
     $pingCommand = exec("ping -c 2 $ip", $output, $result);
     return $result;
 }
@@ -47,8 +50,12 @@ function shutdownAllRaspi() {
         $data = explode(" ", $raspi);
         $ip = $data[2];
  
+        echo "- Raspi: " . $ip . "\n";
+
         if(ping($ip) == 0 ) {       
-            echo "Shutdown: " . $ip . " : " . shutdownRaspi($ip) . "\n";
+            shutdownRaspi($ip);
+        } else {
+            echo "Raspi not connected\n";
         }
     }
 }
@@ -58,6 +65,6 @@ function shutdownAllRaspi() {
  * Main
  */
 
-//shutdownAllRaspi();
+shutdownAllRaspi();
 
 ?>

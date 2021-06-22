@@ -562,7 +562,7 @@ pi@raspberrypi:~ $ sudo service nscd start
 ```
 
 
-7/ Test de connexion.
+### 7/ Test de connexion.
 
 ```
 pi@raspberrypi:~ $ su - sgondouin

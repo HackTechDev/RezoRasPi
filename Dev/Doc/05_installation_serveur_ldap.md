@@ -491,7 +491,7 @@ uri ldap
 Remplacer par :
 
 ```
-uri ldapi:///192.168.1.42
+uri ldap://192.168.1.42
 ```
 
 Chercher : 

@@ -557,7 +557,7 @@ pi@raspberrypi:~ $ sudo service nslcd start
 ```
 
 ```
-pi@raspberrypi:~ $ sudo service nscd start
+pi@raspberrypi:~ $ sudo service nscd stop
 pi@raspberrypi:~ $ sudo service nscd start
 ```
 

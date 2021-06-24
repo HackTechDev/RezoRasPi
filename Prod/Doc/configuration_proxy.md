@@ -17,14 +17,16 @@ Ajouter :
 
 ```
 Acquire::http::Proxy "http://user:password@proxy.server:port/";
-Acquire::https::Proxy "http://user:password@proxy.server:port/";
+Acquire::https::Proxy "https://user:password@proxy.server:port/";
+Acquire::ftp::Proxy "ftp://user:password@proxy.server:port/";
 ```
 
 Soit 
 
 ```
 Acquire::http::Proxy "http://192.168.224.254:3128/";
-Acquire::https::Proxy "http://192.168.224.254@proxy.server:3128/";
+Acquire::https::Proxy "https://192.168.224.254:3128/";
+Acquire::ftp::Proxy "ftp://192.168.224.254:3128/";
 ```
 
 

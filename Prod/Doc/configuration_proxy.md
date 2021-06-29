@@ -1,6 +1,9 @@
 #### Pour le serveur et pour les clients : Configuration du Proxy
 
 
+L'adresse ip du proxy est : 192.168.224.254
+
+
 ### 1/ Pour Apt.
 
 Lien :
@@ -52,8 +55,8 @@ Depuis le serveur, ouvrir :
 Ajouter :
 
 ```
-export http_proxy="http://10.108.39.1:3128"
-export https_proxy="https://10.108.39.1:3128"
+export http_proxy="http://192.168.224.254:3128"
+export https_proxy="https://192.168.224.254:3128"
 export no_proxy="localhost, 127.0.0.1"
 ```
 
